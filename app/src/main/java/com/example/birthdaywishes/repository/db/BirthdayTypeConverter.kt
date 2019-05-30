@@ -1,4 +1,4 @@
-package com.example.birthdaywishes.db
+package com.example.birthdaywishes.repository.db
 
 import androidx.room.TypeConverter
 import com.example.birthdaywishes.POJO.Birthday
