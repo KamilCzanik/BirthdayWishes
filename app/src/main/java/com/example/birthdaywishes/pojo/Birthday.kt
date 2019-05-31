@@ -1,5 +1,7 @@
 package com.example.birthdaywishes.pojo
 
+import java.text.DateFormatSymbols
+
 data class Birthday constructor(val day: Int,val month: Int) {
 
     companion object {
@@ -12,4 +14,6 @@ data class Birthday constructor(val day: Int,val month: Int) {
     }
 
     fun toJsonString() = "{\"day\":$day,\"month\":$month}"
+
+    fun toDateString() = "$day + ${DateFormatSymbols().months[month]}"
 }

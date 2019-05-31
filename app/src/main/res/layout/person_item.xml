@@ -1,38 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   android:orientation="vertical"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="wrap_content">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-            android:id="@+id/personRecyclerItem_name_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            app:layout_constraintStart_toEndOf="@+id/personRecyclerItem_letter_imageView"
-            app:layout_constraintTop_toTopOf="parent"/>
+    <data>
+        <variable name="personItem" type="com.example.birthdaywishes.pojo.Person"/>
+    </data>
 
-    <TextView
-            android:id="@+id/personRecyclerItem_birthday_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/personRecyclerItem_letter_imageView"
-            app:layout_constraintTop_toBottomOf="@+id/personRecyclerItem_name_textView"/>
+    <androidx.constraintlayout.widget.ConstraintLayout android:orientation="vertical"
+                                                       android:layout_width="match_parent"
+                                                       android:layout_height="wrap_content">
 
-    <ImageView
-            android:id="@+id/personRecyclerItem_letter_imageView"
-            android:layout_width="@dimen/recycler_item_image_size"
-            android:layout_height="@dimen/recycler_item_image_size"
-            android:layout_margin="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/ic_launcher_round"/>
+        <TextView
+                android:id="@+id/personRecyclerItem_name_textView"
+                android:text="@{personItem.name}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                app:layout_constraintStart_toEndOf="@+id/personRecyclerItem_letter_imageView"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+                android:id="@+id/personRecyclerItem_birthday_textView"
+                android:text="@{personItem.birthday.toDateString()"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/personRecyclerItem_letter_imageView"
+                app:layout_constraintTop_toBottomOf="@+id/personRecyclerItem_name_textView"/>
+
+        <ImageView
+                android:id="@+id/personRecyclerItem_letter_imageView"
+                android:layout_width="@dimen/recycler_item_image_size"
+                android:layout_height="@dimen/recycler_item_image_size"
+                android:layout_margin="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/ic_launcher_round"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
