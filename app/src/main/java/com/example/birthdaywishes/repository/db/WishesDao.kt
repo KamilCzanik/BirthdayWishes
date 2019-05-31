@@ -2,7 +2,7 @@ package com.example.birthdaywishes.repository.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.birthdaywishes.POJO.Wishes
+import com.example.birthdaywishes.pojo.Wishes
 
 @Dao
 interface WishesDao {

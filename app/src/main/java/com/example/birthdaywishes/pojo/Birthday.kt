@@ -1,4 +1,4 @@
-package com.example.birthdaywishes.POJO
+package com.example.birthdaywishes.pojo
 
 data class Birthday constructor(val day: Int,val month: Int) {
 

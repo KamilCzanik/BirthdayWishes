@@ -1,4 +1,4 @@
-package com.example.birthdaywishes.POJO
+package com.example.birthdaywishes.pojo
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

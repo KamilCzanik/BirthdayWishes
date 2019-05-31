@@ -1,7 +1,7 @@
 package com.example.birthdaywishes;
 
 
-import com.example.birthdaywishes.POJO.DaysOfMonth;
+import com.example.birthdaywishes.pojo.DaysOfMonth;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

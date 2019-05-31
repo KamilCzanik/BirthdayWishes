@@ -1,7 +1,7 @@
 package com.example.birthdaywishes.repository.db
 
 import androidx.room.TypeConverter
-import com.example.birthdaywishes.POJO.Birthday
+import com.example.birthdaywishes.pojo.Birthday
 
 class BirthdayTypeConverter {
 

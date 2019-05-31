@@ -1,4 +1,4 @@
-package com.example.birthdaywishes.POJO
+package com.example.birthdaywishes.pojo
 
 abstract class DaysOfMonth {
     companion object {

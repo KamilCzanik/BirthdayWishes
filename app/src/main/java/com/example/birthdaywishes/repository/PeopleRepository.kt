@@ -2,7 +2,7 @@ package com.example.birthdaywishes.repository
 
 import android.os.AsyncTask
 import androidx.lifecycle.LiveData
-import com.example.birthdaywishes.POJO.Person
+import com.example.birthdaywishes.pojo.Person
 import com.example.birthdaywishes.repository.db.PersonDao
 import javax.inject.Inject
 
