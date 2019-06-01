@@ -1,6 +1,5 @@
 package com.example.birthdaywishes.ui
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,8 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.birthdaywishes.databinding.PersonItemBinding
 import com.example.birthdaywishes.pojo.Person
+import javax.inject.Inject
 
-class PeopleAdapter : ListAdapter<Person,PeopleAdapter.ViewHolder>(DIFF_CALLBACK) {
+class PeopleAdapter @Inject constructor() : ListAdapter<Person,PeopleAdapter.ViewHolder>(DIFF_CALLBACK) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
