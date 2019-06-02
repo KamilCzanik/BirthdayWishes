@@ -7,4 +7,12 @@
     <string name="remove_wishes_question">Do you want to remove this wishes?</string>
     <string name="add_wishes_hint">Insert wishes</string>
     <string name="insert_wishes_content_toast">Insert wishes content</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="phone">Phone</string>
+    <string name="name">Name</string>
+    <string name="month">Month</string>
+    <string name="day">Day</string>
+    <string name="invalid_person_data_toast">Invalid person data</string>
 </resources>
