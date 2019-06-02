@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.birthdaywishes.databinding.WishesItemBinding
 import com.example.birthdaywishes.pojo.Wishes
+import javax.inject.Inject
 
-class WishesAdapter : ListAdapter<Wishes, WishesAdapter.ViewHolder>(DIFF_CALLBACK) {
+class WishesAdapter @Inject constructor() : ListAdapter<Wishes, WishesAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(WishesItemBinding.inflate(LayoutInflater.from(parent.context),parent,false))

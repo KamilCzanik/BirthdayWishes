@@ -9,8 +9,11 @@ import dagger.Provides
 class DaoModule(private val application: Application) {
 
     @Provides
+    fun providesDb() = BirthdayWishesDatabase.getInstance(application)
+
+    @Provides
     fun providesPersonDao(birthdayWishesDatabase: BirthdayWishesDatabase) = birthdayWishesDatabase.personDao()
 
     @Provides
-    fun providesDb() = BirthdayWishesDatabase.getInstance(application)
+    fun providesWishesDao(birthdayWishesDatabase: BirthdayWishesDatabase) = birthdayWishesDatabase.wishesDao()
 }
