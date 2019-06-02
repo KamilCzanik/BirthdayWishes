@@ -28,7 +28,7 @@ class PeopleAdapter @Inject constructor() : ListAdapter<Person, PeopleAdapter.Vi
         }
     }
 
-    fun getPersonAt(pos: Int) = getItem(pos)
+    fun getPersonAt(pos: Int): Person = getItem(pos)
 
     class ViewHolder(private val binding: PersonItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
