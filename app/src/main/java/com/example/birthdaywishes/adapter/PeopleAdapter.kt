@@ -1,4 +1,4 @@
-package com.example.birthdaywishes.ui
+package com.example.birthdaywishes.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,11 +9,19 @@ import com.example.birthdaywishes.databinding.PersonItemBinding
 import com.example.birthdaywishes.pojo.Person
 import javax.inject.Inject
 
-class PeopleAdapter @Inject constructor() : ListAdapter<Person,PeopleAdapter.ViewHolder>(DIFF_CALLBACK) {
+class PeopleAdapter @Inject constructor() : ListAdapter<Person, PeopleAdapter.ViewHolder>(
+    DIFF_CALLBACK
+) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(PersonItemBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        ViewHolder(
+            PersonItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(getItem(position))
 
