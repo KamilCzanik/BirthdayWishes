@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.birthdaywishes.R
+import com.example.birthdaywishes.pojo.Birthday
 import com.example.birthdaywishes.pojo.DaysOfMonth
+import com.example.birthdaywishes.pojo.Person
 import kotlinx.android.synthetic.main.fragment_edit_person.*
 
 abstract class PersonModificationFragment : Fragment() {
@@ -42,4 +44,15 @@ abstract class PersonModificationFragment : Fragment() {
             }
         }
     }
+
+    protected fun getPerson() = Person(
+        editPersonFragmentName_editText.text.toString().trim(),
+        getBirthday(),
+        editPersonFragmentPhone_editText.text.toString().trim()
+    )
+
+    protected fun getBirthday() = Birthday(
+        editPersonFragmentDay_numberPicker.value,
+        editPersonFragmentMonth_numberPicker.value
+    )
 }

@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 import com.example.birthdaywishes.InvalidPersonDataEvent
 import com.example.birthdaywishes.PersonDataEvent
 import com.example.birthdaywishes.R
-import com.example.birthdaywishes.pojo.Birthday
 import com.example.birthdaywishes.pojo.Person
 import kotlinx.android.synthetic.main.fragment_edit_person.*
 import javax.inject.Inject
@@ -38,17 +37,6 @@ class AddPersonFragment : PersonModificationFragment() {
         editPersonFragmentCancel_button.setOnClickListener {  }
         editPersonFragmentSubmit_button.setOnClickListener { viewModel.add(getPerson()) }
     }
-
-    private fun getPerson() = Person(
-        editPersonFragmentName_editText.text.toString().trim(),
-        getBirthday(),
-        editPersonFragmentPhone_editText.text.toString().trim()
-    )
-
-    private fun getBirthday() = Birthday(
-        editPersonFragmentDay_numberPicker.value,
-        editPersonFragmentMonth_numberPicker.value
-    )
 
     interface ViewModel {
         val personDataEvent : LiveData<PersonDataEvent>
