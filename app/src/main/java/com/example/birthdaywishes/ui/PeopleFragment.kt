@@ -29,11 +29,14 @@ class PeopleFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_people, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         injectDependencies()
         configureRecycler()
         viewModel.people.observe(this, Observer { peopleAdapter.submitList(it) })
-        
-        return inflater.inflate(R.layout.fragment_people, container, false)
     }
 
     private fun injectDependencies() {
@@ -68,6 +71,7 @@ class PeopleFragment : Fragment() {
             .setPositiveButton(R.string.submit) { _,_ -> viewModel.delete(person)}
             .setNegativeButton(R.string.cancel) {dialog,_ -> dialog.cancel() }
             .setCancelable(true)
+            .create().show()
     }
 
     interface ViewModel {
