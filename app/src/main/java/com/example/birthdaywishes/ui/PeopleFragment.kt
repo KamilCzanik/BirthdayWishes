@@ -1,6 +1,7 @@
 package com.example.birthdaywishes.ui
 
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -48,15 +49,25 @@ class PeopleFragment : Fragment() {
         peopleFragment_recyclerView.layoutManager = LinearLayoutManager(context)
         peopleFragment_recyclerView.setHasFixedSize(true)
         peopleFragment_recyclerView.adapter = peopleAdapter
-        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
-            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
-                return false
-            }
 
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                viewModel.delete(peopleAdapter.getPersonAt(viewHolder.adapterPosition))
-            }
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder) = false
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) =
+                showRemovePersonAlertDialog(peopleAdapter.getPersonAt(viewHolder.adapterPosition))
+
+
         }).attachToRecyclerView(peopleFragment_recyclerView)
+    }
+
+    fun showRemovePersonAlertDialog(person: Person) {
+        AlertDialog.Builder(context)
+            .setTitle(R.string.delete)
+            .setMessage(R.string.remove_person_question)
+            .setPositiveButton(R.string.submit) { _,_ -> viewModel.delete(person)}
+            .setNegativeButton(R.string.cancel) {dialog,_ -> dialog.cancel() }
+            .setCancelable(true)
     }
 
     interface ViewModel {
