@@ -11,29 +11,29 @@
                                                        android:layout_height="wrap_content">
 
         <TextView
-                android:id="@+id/personRecyclerItem_name_textView"
+                android:id="@+id/personItemName_textView"
                 android:text="@{personItem.name}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                app:layout_constraintStart_toEndOf="@+id/personRecyclerItem_letter_imageView"
+                app:layout_constraintStart_toEndOf="@+id/personItemImage_imageView"
                 app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
-                android:id="@+id/personRecyclerItem_birthday_textView"
+                android:id="@+id/personItemBirthday_textView"
                 android:text="@{personItem.birthday.toDateString()"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/personRecyclerItem_letter_imageView"
-                app:layout_constraintTop_toBottomOf="@+id/personRecyclerItem_name_textView"/>
+                app:layout_constraintStart_toEndOf="@+id/personItemImage_imageView"
+                app:layout_constraintTop_toBottomOf="@+id/personItemName_textView"/>
 
         <ImageView
-                android:id="@+id/personRecyclerItem_letter_imageView"
+                android:id="@+id/personItemImage_imageView"
                 android:layout_width="@dimen/recycler_item_image_size"
                 android:layout_height="@dimen/recycler_item_image_size"
                 android:layout_margin="8dp"
