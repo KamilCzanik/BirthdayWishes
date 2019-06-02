@@ -13,13 +13,7 @@ class PeopleAdapter @Inject constructor() : ListAdapter<Person, PeopleAdapter.Vi
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(
-            PersonItemBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+        ViewHolder(PersonItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(getItem(position))
 
