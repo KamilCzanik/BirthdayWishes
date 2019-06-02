@@ -1,7 +1,8 @@
-package com.example.birthdaywishes
+package com.example.birthdaywishes.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.example.birthdaywishes.R
 
 class MainActivity : AppCompatActivity() {
 
