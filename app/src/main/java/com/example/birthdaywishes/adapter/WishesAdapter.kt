@@ -13,10 +13,9 @@ class WishesAdapter : ListAdapter<Wishes, WishesAdapter.ViewHolder>(DIFF_CALLBAC
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(WishesItemBinding.inflate(LayoutInflater.from(parent.context),parent,false))
 
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(getItem(position))
 
-
+    fun getWishesAt(pos: Int) : Wishes = getItem(pos)
 
     class ViewHolder(private val binding: WishesItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
