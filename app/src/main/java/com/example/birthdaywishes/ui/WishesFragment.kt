@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.birthdaywishes.R
 import com.example.birthdaywishes.adapter.WishesAdapter
+import com.example.birthdaywishes.appearAndSlideUp
 import com.example.birthdaywishes.pojo.Wishes
+import com.example.birthdaywishes.slideDownAndDisappear
 import kotlinx.android.synthetic.main.fragment_people.*
 import kotlinx.android.synthetic.main.fragment_wishes.*
 import javax.inject.Inject
@@ -31,20 +33,7 @@ class WishesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureRecycler()
-
-        wishesFragment_fab.setOnClickListener { wishesFragmentInputField_cardView.visibility = View.VISIBLE }
-        fragmentWishesCancel_button.setOnClickListener { wishesFragmentInputField_cardView.visibility = View.GONE }
-        fragmentWishesSubmit_button.setOnClickListener { addWishes() }
-    }
-
-    private fun addWishes() {
-        val wishes = Wishes(wishesFragmentInput_editText.text.toString().trim())
-        if(wishes.content.isNotEmpty()) {
-            viewModel.add(wishes)
-            wishesFragmentInputField_cardView.visibility = View.GONE
-        }
-        else
-            Toast.makeText(context,R.string.insert_wishes_content_toast,Toast.LENGTH_LONG).show()
+        setOnClickListeners()
     }
 
     private fun configureRecycler() {
@@ -57,13 +46,29 @@ class WishesFragment : Fragment() {
             override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder) = false
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) =
-                showRemovePersonAlertDialog(wishesAdapter.getWishesAt(viewHolder.adapterPosition))
+                showRemoveWishesAlertDialog(wishesAdapter.getWishesAt(viewHolder.adapterPosition))
 
 
         }).attachToRecyclerView(peopleFragment_recyclerView)
     }
 
-    fun showRemovePersonAlertDialog(wishes: Wishes) {
+    private fun setOnClickListeners() {
+        wishesFragment_fab.setOnClickListener { wishesFragmentInputField_cardView.appearAndSlideUp() }
+        fragmentWishesCancel_button.setOnClickListener { wishesFragmentInputField_cardView.slideDownAndDisappear() }
+        fragmentWishesSubmit_button.setOnClickListener { addWishes() }
+    }
+
+    private fun addWishes() {
+        val wishes = Wishes(wishesFragmentInput_editText.text.toString().trim())
+        if(wishes.content.isNotEmpty()) {
+            viewModel.add(wishes)
+            wishesFragmentInputField_cardView.slideDownAndDisappear()
+        }
+        else
+            Toast.makeText(context,R.string.insert_wishes_content_toast,Toast.LENGTH_LONG).show()
+    }
+
+    fun showRemoveWishesAlertDialog(wishes: Wishes) {
         AlertDialog.Builder(context)
             .setTitle(R.string.delete)
             .setMessage(R.string.remove_wishes_question)
