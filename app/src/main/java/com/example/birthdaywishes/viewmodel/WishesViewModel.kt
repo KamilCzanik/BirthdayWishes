@@ -9,14 +9,14 @@ import javax.inject.Inject
 
 class WishesViewModel(application: Application) : AndroidViewModel(application),WishesFragment.ViewModel {
 
-    @Inject lateinit var wishesRepository: WishesRepository
-    override val wishes by lazy { wishesRepository.wishes }
+    @Inject lateinit var repository: WishesRepository
+    override val wishes by lazy { repository.wishes }
 
     override fun add(wishes: Wishes) {
-        wishesRepository.add(wishes)
+        repository.add(wishes)
     }
 
     override fun delete(wishes: Wishes) {
-        wishesRepository.delete(wishes)
+        repository.delete(wishes)
     }
 }
