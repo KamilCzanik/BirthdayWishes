@@ -12,5 +12,5 @@ class PeopleViewModel(application: Application) : AndroidViewModel(application),
     @Inject lateinit var repository: PeopleRepository
     override val people by lazy { repository.people }
 
-    fun delete(person: Person) { repository.delete(person) }
+    override fun delete(person: Person) { repository.delete(person) }
 }

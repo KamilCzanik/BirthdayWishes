@@ -9,9 +9,7 @@ import com.example.birthdaywishes.databinding.PersonItemBinding
 import com.example.birthdaywishes.pojo.Person
 import javax.inject.Inject
 
-class PeopleAdapter @Inject constructor() : ListAdapter<Person, PeopleAdapter.ViewHolder>(
-    DIFF_CALLBACK
-) {
+class PeopleAdapter @Inject constructor() : ListAdapter<Person, PeopleAdapter.ViewHolder>(DIFF_CALLBACK) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -35,6 +33,8 @@ class PeopleAdapter @Inject constructor() : ListAdapter<Person, PeopleAdapter.Vi
             override fun areContentsTheSame(oldItem: Person, newItem: Person) = oldItem == newItem
         }
     }
+
+    fun getPersonAt(pos: Int) = getItem(pos)
 
     class ViewHolder(private val binding: PersonItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
