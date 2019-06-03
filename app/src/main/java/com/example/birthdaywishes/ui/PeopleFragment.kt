@@ -28,6 +28,14 @@ class PeopleFragment : Fragment() {
     @Inject lateinit var viewModel: ViewModel
     @Inject lateinit var peopleAdapter: PeopleAdapter
 
+    val onPersonItemClickListener = object : OnPersonItemClickListener {
+        override fun onClick(pos: Int) {
+            val person = peopleAdapter.getPersonAt(pos)
+            val navAction = PeopleFragmentDirections.actionPeopleFragmentToEditPersonFragment(person)
+            findNavController().navigate(navAction)
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_people, container, false)
@@ -44,7 +52,7 @@ class PeopleFragment : Fragment() {
     private fun injectDependencies() {
         DaggerPeopleComponent
             .builder()
-            .peopleModule(PeopleModule(activity!!.application))
+            .peopleModule(PeopleModule(activity!!.application,this))
             .daoModule(DaoModule(activity!!.application))
             .build()
             .inject(this)
@@ -66,6 +74,7 @@ class PeopleFragment : Fragment() {
         }).attachToRecyclerView(peopleFragment_recyclerView)
     }
 
+
     fun showRemovePersonAlertDialog(person: Person) {
         AlertDialog.Builder(context)
             .setTitle(R.string.delete)
@@ -74,6 +83,10 @@ class PeopleFragment : Fragment() {
             .setNegativeButton(R.string.cancel) {dialog,_ -> dialog.cancel() }
             .setCancelable(true)
             .create().show()
+    }
+
+    interface OnPersonItemClickListener {
+        fun onClick(pos: Int)
     }
 
     interface ViewModel {

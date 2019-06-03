@@ -7,13 +7,15 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.birthdaywishes.databinding.PersonItemBinding
 import com.example.birthdaywishes.pojo.Person
+import com.example.birthdaywishes.ui.PeopleFragment
 import javax.inject.Inject
 
-class PeopleAdapter @Inject constructor() : ListAdapter<Person, PeopleAdapter.ViewHolder>(DIFF_CALLBACK) {
+class PeopleAdapter @Inject constructor(
+    private val onCLickListener: PeopleFragment.OnPersonItemClickListener) : ListAdapter<Person, PeopleAdapter.ViewHolder>(DIFF_CALLBACK) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(PersonItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        ViewHolder(PersonItemBinding.inflate(LayoutInflater.from(parent.context), parent, false),onCLickListener)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(getItem(position))
 
@@ -30,11 +32,14 @@ class PeopleAdapter @Inject constructor() : ListAdapter<Person, PeopleAdapter.Vi
 
     fun getPersonAt(pos: Int): Person = getItem(pos)
 
-    class ViewHolder(private val binding: PersonItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder
+        (private val binding: PersonItemBinding,
+         private val onCLickListener: PeopleFragment.OnPersonItemClickListener) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(person: Person) {
             binding.personItem = person
             binding.executePendingBindings()
+            binding.root.setOnClickListener { onCLickListener.onClick(adapterPosition) }
         }
     }
 }
