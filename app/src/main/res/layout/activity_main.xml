@@ -11,9 +11,9 @@
             android:id="@+id/peopleFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            class="com.example.birthdaywishes.ui.PeopleFragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/people_navigation"
+            app:navGraph="@navigation/people_nav_graph"
 
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

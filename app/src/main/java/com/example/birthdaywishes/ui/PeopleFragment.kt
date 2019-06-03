@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -36,6 +37,7 @@ class PeopleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         injectDependencies()
         configureRecycler()
+        peopleFragment_fab.setOnClickListener { findNavController().navigate(R.id.action_peopleFragment_to_addPersonFragment)}
         viewModel.people.observe(this, Observer { peopleAdapter.submitList(it) })
     }
 

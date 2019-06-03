@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/people_nav_graph" app:startDestination="@id/peopleFragment">
+    <fragment android:id="@+id/peopleFragment" android:name="com.example.birthdaywishes.ui.PeopleFragment" tools:layout="@layout/fragment_people">
+        <action android:id="@+id/action_peopleFragment_to_editPersonFragment" app:destination="@id/editPersonFragment"/>
+        <action android:id="@+id/action_peopleFragment_to_addPersonFragment" app:destination="@id/addPersonFragment"/>
+    </fragment>
+    <fragment android:id="@+id/editPersonFragment"
+              android:name="com.example.birthdaywishes.ui.personModification.EditPersonFragment" tools:layout="@layout/fragment_edit_person">
+        <argument android:name="person" app:argType="com.example.birthdaywishes.pojo.Person"/>
+    </fragment>
+    <fragment android:id="@+id/addPersonFragment" android:name="com.example.birthdaywishes.ui.personModification.AddPersonFragment" tools:layout="@layout/fragment_edit_person"/>
+</navigation>
