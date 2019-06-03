@@ -11,7 +11,7 @@ class PeopleRepository @Inject constructor(private val personDao: PersonDao) {
     val people: LiveData<List<Person>> = personDao.getAllPeople()
 
     fun delete(person: Person) {
-        DeletePersonAsyncTask(personDao).doInBackground(person)
+        DeletePersonAsyncTask(personDao).execute(person)
     }
 
     companion object {

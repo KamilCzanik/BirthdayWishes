@@ -11,11 +11,11 @@ class WishesRepository @Inject constructor(private val wishesDao: WishesDao) {
     val wishes: LiveData<List<Wishes>> = wishesDao.getAllWishes()
 
     fun delete(wishes: Wishes) {
-        DeleteWishesAsyncTask(wishesDao).doInBackground(wishes)
+        DeleteWishesAsyncTask(wishesDao).execute(wishes)
     }
 
     fun add(wishes: Wishes) {
-        InsertWishesAsyncTask(wishesDao).doInBackground(wishes)
+        InsertWishesAsyncTask(wishesDao).execute(wishes)
     }
 
     private class InsertWishesAsyncTask(private val wishesDao: WishesDao) : AsyncTask<Wishes, Any, Any>() {
