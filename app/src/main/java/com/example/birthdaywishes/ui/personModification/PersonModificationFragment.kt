@@ -51,7 +51,7 @@ abstract class PersonModificationFragment : Fragment() {
 
     private fun setMinMaxPickersValues() {
         editPersonFragmentMonth_numberPicker.minValue = 1
-        editPersonFragmentMonth_numberPicker.minValue = 12
+        editPersonFragmentMonth_numberPicker.maxValue = 12
         editPersonFragmentDay_numberPicker.minValue = DaysOfMonth.MIN_DAYS
         editPersonFragmentDay_numberPicker.maxValue = DaysOfMonth[1]
     }
@@ -60,10 +60,10 @@ abstract class PersonModificationFragment : Fragment() {
         editPersonFragmentMonth_numberPicker.setOnValueChangedListener { _, _, newMonth ->
             val monthDayCount = DaysOfMonth[newMonth]
 
-            if(editPersonFragmentDay_numberPicker.value > monthDayCount) {
-                editPersonFragmentDay_numberPicker.maxValue = monthDayCount
+            editPersonFragmentDay_numberPicker.maxValue = monthDayCount
+
+            if(editPersonFragmentDay_numberPicker.value > monthDayCount)
                 editPersonFragmentDay_numberPicker.value = monthDayCount
-            }
         }
     }
 

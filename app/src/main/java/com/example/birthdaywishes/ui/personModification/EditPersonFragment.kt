@@ -5,11 +5,10 @@ import android.view.View
 import androidx.navigation.fragment.navArgs
 import com.example.birthdaywishes.pojo.Person
 import kotlinx.android.synthetic.main.fragment_edit_person.*
-import javax.inject.Inject
 
 class EditPersonFragment : PersonModificationFragment() {
 
-    @Inject override lateinit var viewModel: ViewModel
+    /*TODO @Inject*/ override lateinit var viewModel: ViewModel
     private val args: EditPersonFragmentArgs by navArgs()
     private val personToEdit by lazy { args.person }
 
