@@ -15,4 +15,6 @@
     <string name="month">Month</string>
     <string name="day">Day</string>
     <string name="invalid_person_data_toast">Invalid person data</string>
+    <string name="birthday_reminder">Birthday reminder</string>
+    <string name="channel_name">birthday_channel</string>
 </resources>
