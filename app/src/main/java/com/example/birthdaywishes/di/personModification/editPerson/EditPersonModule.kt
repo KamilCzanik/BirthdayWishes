@@ -1,15 +1,20 @@
 package com.example.birthdaywishes.di.personModification.editPerson
 
 import android.app.Application
+import androidx.lifecycle.ViewModelProvider
+import com.example.birthdaywishes.repository.PersonRepository
+import com.example.birthdaywishes.ui.personModification.EditPersonFragment
+import com.example.birthdaywishes.viewmodel.EditPersonViewModel
 import dagger.Module
+import dagger.Provides
 
 @Module
 class EditPersonModule(private val application: Application) {
 
-    /* TODO @Provides
+    @Provides
     fun providesViewModel(repository: PersonRepository) : EditPersonFragment.ViewModel {
-        val viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(::class.java)
-        viewModel.repository = repository
+        val viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(EditPersonViewModel::class.java)
+        viewModel.personRepository = repository
         return viewModel
-    } */
+    }
 }

@@ -3,19 +3,32 @@ package com.example.birthdaywishes.ui.personModification
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.navArgs
+import com.example.birthdaywishes.di.dao.DaoModule
+import com.example.birthdaywishes.di.personModification.editPerson.DaggerEditPersonComponent
+import com.example.birthdaywishes.di.personModification.editPerson.EditPersonModule
 import com.example.birthdaywishes.pojo.Person
 import kotlinx.android.synthetic.main.fragment_edit_person.*
+import javax.inject.Inject
 
 class EditPersonFragment : PersonModificationFragment() {
 
-    /*TODO @Inject*/ override lateinit var viewModel: ViewModel
+    @Inject override lateinit var viewModel: ViewModel
     private val args: EditPersonFragmentArgs by navArgs()
     private val personToEdit by lazy { args.person }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        injectDependencies()
         super.onViewCreated(view, savedInstanceState)
         personBinding.personItem = personToEdit
         personBinding.executePendingBindings()
+    }
+
+    private fun injectDependencies() {
+        DaggerEditPersonComponent.builder()
+            .daoModule(DaoModule(activity!!.application))
+            .editPersonModule(EditPersonModule(activity!!.application))
+            .build()
+            .inject(this)
     }
 
     override fun configureButtons() {

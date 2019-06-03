@@ -10,4 +10,7 @@ data class Person(val name: String, val birthday: Birthday, val phoneNumber: Str
 
     @PrimaryKey(autoGenerate = true) var id: Int? = null
 
+    fun isDataValid() = name.isNotEmpty() &&
+            phoneNumber.isNotEmpty() &&
+            Birthday.isDateValid(birthday.day,birthday.month)
 }

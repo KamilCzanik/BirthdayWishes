@@ -8,18 +8,18 @@ import com.example.birthdaywishes.PersonDataEvent
 import com.example.birthdaywishes.ValidPersonDataEvent
 import com.example.birthdaywishes.pojo.Person
 import com.example.birthdaywishes.repository.PersonRepository
-import com.example.birthdaywishes.ui.personModification.AddPersonFragment
+import com.example.birthdaywishes.ui.personModification.EditPersonFragment
 import javax.inject.Inject
 
-class AddPersonViewModel(application: Application) : AndroidViewModel(application),AddPersonFragment.ViewModel {
+class EditPersonViewModel(application: Application) : AndroidViewModel(application),EditPersonFragment.ViewModel {
 
     override val personDataEvent = MutableLiveData<PersonDataEvent>()
     @Inject lateinit var personRepository: PersonRepository
 
-    override fun add(person: Person) {
+    override fun update(person: Person) {
         if(person.isDataValid()) {
             personDataEvent.value = ValidPersonDataEvent()
-            personRepository.add(person)
+            personRepository.update(person)
         } else
             personDataEvent.value = InvalidPersonDataEvent()
     }
