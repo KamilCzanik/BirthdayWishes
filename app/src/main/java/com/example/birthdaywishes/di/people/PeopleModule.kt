@@ -9,7 +9,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class PeopleModule(private val application: Application) {
+class PeopleModule(private val application: Application,private val fragment: PeopleFragment) {
 
     @Provides
     fun providesViewModel(repository: PeopleRepository) : PeopleFragment.ViewModel {
@@ -17,5 +17,8 @@ class PeopleModule(private val application: Application) {
         viewModel.repository = repository
         return viewModel
     }
+
+    @Provides
+    fun providesOnPersonItemClickListener() = fragment.onPersonItemClickListener
 
 }
