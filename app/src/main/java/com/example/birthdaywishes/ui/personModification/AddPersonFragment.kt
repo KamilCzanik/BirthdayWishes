@@ -2,7 +2,6 @@ package com.example.birthdaywishes.ui.personModification
 
 
 import android.os.Bundle
-import android.view.View
 import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.personModification.addPerson.AddPersonModule
 import com.example.birthdaywishes.di.personModification.addPerson.DaggerAddPersonComponent
@@ -14,17 +13,16 @@ class AddPersonFragment : PersonModificationFragment() {
 
     @Inject override lateinit var viewModel: ViewModel
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         injectDependencies()
-        super.onViewCreated(view, savedInstanceState)
     }
-
     override fun configureButtons() {
         editPersonFragmentCancel_button.setOnClickListener { activity?.onBackPressed() }
         editPersonFragmentSubmit_button.setOnClickListener { viewModel.add(getPerson()) }
     }
 
-    fun injectDependencies() {
+    private fun injectDependencies() {
         DaggerAddPersonComponent.builder()
             .addPersonModule(AddPersonModule(activity!!.application))
             .daoModule(DaoModule(activity!!.application))

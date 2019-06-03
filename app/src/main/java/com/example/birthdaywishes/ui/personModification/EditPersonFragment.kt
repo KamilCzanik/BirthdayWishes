@@ -16,8 +16,12 @@ class EditPersonFragment : PersonModificationFragment() {
     private val args: EditPersonFragmentArgs by navArgs()
     private val personToEdit by lazy { args.person }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         injectDependencies()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         personBinding.personItem = personToEdit
         personBinding.executePendingBindings()
