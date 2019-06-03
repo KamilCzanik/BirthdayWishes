@@ -6,8 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.birthdaywishes.pojo.Person
+import com.example.birthdaywishes.pojo.Wishes
 
-@Database(entities = [Person::class], version = 1, exportSchema = false)
+@Database(entities = [Person::class, Wishes::class], version = 1, exportSchema = false)
 @TypeConverters(BirthdayTypeConverter::class)
 abstract class BirthdayWishesDatabase : RoomDatabase() {
     abstract fun personDao(): PersonDao
