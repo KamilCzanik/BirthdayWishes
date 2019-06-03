@@ -67,7 +67,7 @@ abstract class PersonModificationFragment : Fragment() {
         }
     }
 
-    protected fun getPerson() = Person(
+    protected open fun getPerson() = Person(
         editPersonFragmentName_editText.text.toString().trim(),
         getBirthday(),
         editPersonFragmentPhone_editText.text.toString().trim()
