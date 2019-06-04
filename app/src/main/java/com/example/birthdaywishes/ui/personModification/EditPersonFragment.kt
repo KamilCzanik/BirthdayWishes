@@ -3,6 +3,7 @@ package com.example.birthdaywishes.ui.personModification
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.navArgs
+import com.example.birthdaywishes.di.SystemServiceModule
 import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.personModification.editPerson.DaggerEditPersonComponent
 import com.example.birthdaywishes.di.personModification.editPerson.EditPersonModule
@@ -31,6 +32,7 @@ class EditPersonFragment : PersonModificationFragment() {
         DaggerEditPersonComponent.builder()
             .daoModule(DaoModule(activity!!.application))
             .editPersonModule(EditPersonModule(activity!!.application))
+            .systemServiceModule(SystemServiceModule(context!!))
             .build()
             .inject(this)
     }
