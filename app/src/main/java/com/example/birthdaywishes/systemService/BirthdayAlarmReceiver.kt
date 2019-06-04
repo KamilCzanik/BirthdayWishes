@@ -8,8 +8,6 @@ import com.example.birthdaywishes.systemService.BirthdayAlarmScheduler.Companion
 
 object BirthdayAlarmReceiver : BroadcastReceiver() {
 
-    const val CHANNEL_ID = 0
-
     override fun onReceive(context: Context, intent: Intent) {
         if(intent.hasExtra(PERSON_EXTRA))
             NotificationPublisher.postNotification(

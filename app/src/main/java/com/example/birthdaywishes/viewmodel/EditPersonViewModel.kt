@@ -18,12 +18,11 @@ class EditPersonViewModel(application: Application) : AndroidViewModel(applicati
     @Inject lateinit var personRepository: PersonRepository
     @Inject lateinit var scheduler: BirthdayAlarmScheduler
 
-    override fun update(oldPerson: Person,newPerson: Person) {
-        if(newPerson.isDataValid()) {
+    override fun update(person: Person) {
+        if(person.isDataValid()) {
             personDataEvent.value = ValidPersonDataEvent()
-            personRepository.update(newPerson)
-            scheduler.cancelPreviousBirthdayAlarm(oldPerson)
-            scheduler.scheduleBirthdayAlarm(newPerson)
+            personRepository.update(person)
+            scheduler.scheduleBirthdayAlarm(person)
         } else
             personDataEvent.value = InvalidPersonDataEvent()
     }

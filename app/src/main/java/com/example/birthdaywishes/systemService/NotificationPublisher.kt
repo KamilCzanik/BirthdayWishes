@@ -28,7 +28,7 @@ class NotificationPublisher {
                 .build()
 
             (context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).notify(
-                BirthdayAlarmReceiver.CHANNEL_ID,
+                person.id!!/*as channel*/,
                 notification
             )
         }

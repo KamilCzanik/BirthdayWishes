@@ -37,11 +37,11 @@ class EditPersonFragment : PersonModificationFragment() {
 
     override fun configureButtons() {
         editPersonFragmentCancel_button.setOnClickListener { activity?.onBackPressed() }
-        editPersonFragmentSubmit_button.setOnClickListener { viewModel.update(personToEdit,getPerson()) } }
+        editPersonFragmentSubmit_button.setOnClickListener { viewModel.update(getPerson()) } }
 
     override fun getPerson() = super.getPerson().apply { id = personToEdit.id }
 
     interface ViewModel : PersonModificationFragment.ViewModel{
-        fun update(oldPerson: Person,newPerson: Person)
+        fun update(person: Person)
     }
 }

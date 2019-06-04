@@ -24,20 +24,15 @@ class BirthdayAlarmScheduler @Inject constructor(
             set(Calendar.HOUR_OF_DAY,8)
         }
 
-        alarmManager.setInexactRepeating(
+        alarmManager.set(
             AlarmManager.ELAPSED_REALTIME_WAKEUP,
             calendar.timeInMillis,
-            0,
             getPendingIntent(person)
         )
     }
 
-    fun cancelPreviousBirthdayAlarm(person: Person) {
-        alarmManager.cancel(getPendingIntent(person))
-    }
-
-    private fun getPendingIntent(person: Person) : PendingIntent = PendingIntent.getBroadcast(
-        context,1,getAlarmIntent(person),0)
+    private fun getPendingIntent(person: Person) = PendingIntent.getBroadcast(
+        context,person.id!!,getAlarmIntent(person),PendingIntent.FLAG_UPDATE_CURRENT)
 
     private fun getAlarmIntent(person: Person) =
         Intent(context, BirthdayAlarmReceiver::class.java).apply {
