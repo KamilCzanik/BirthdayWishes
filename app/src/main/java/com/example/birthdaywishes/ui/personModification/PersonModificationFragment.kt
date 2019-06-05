@@ -73,14 +73,18 @@ abstract class PersonModificationFragment : Fragment() {
         editPersonFragmentPhone_editText.text.toString().trim()
     )
 
-    protected fun getBirthday() = Birthday(
+    private fun getBirthday() = Birthday(
         editPersonFragmentDay_numberPicker.value,
         editPersonFragmentMonth_numberPicker.value
     )
 
-    abstract fun configureButtons()
+    private fun configureButtons() {
+        editPersonFragmentCancel_button.setOnClickListener { activity?.onBackPressed() }
+        editPersonFragmentSubmit_button.setOnClickListener { viewModel.save(getPerson()) }
+    }
 
     interface ViewModel {
         val personDataEvent : LiveData<PersonDataEvent>
+        fun save(person: Person)
     }
 }

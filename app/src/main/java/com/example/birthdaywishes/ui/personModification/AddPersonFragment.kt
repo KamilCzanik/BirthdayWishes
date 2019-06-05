@@ -6,8 +6,6 @@ import com.example.birthdaywishes.di.SystemServiceModule
 import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.personModification.addPerson.AddPersonModule
 import com.example.birthdaywishes.di.personModification.addPerson.DaggerAddPersonComponent
-import com.example.birthdaywishes.pojo.Person
-import kotlinx.android.synthetic.main.fragment_edit_person.*
 import javax.inject.Inject
 
 class AddPersonFragment : PersonModificationFragment() {
@@ -17,10 +15,6 @@ class AddPersonFragment : PersonModificationFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         injectDependencies()
-    }
-    override fun configureButtons() {
-        editPersonFragmentCancel_button.setOnClickListener { activity?.onBackPressed() }
-        editPersonFragmentSubmit_button.setOnClickListener { viewModel.add(getPerson()) }
     }
 
     private fun injectDependencies() {
@@ -32,7 +26,5 @@ class AddPersonFragment : PersonModificationFragment() {
             .inject(this)
     }
 
-    interface ViewModel : PersonModificationFragment.ViewModel{
-        fun add(person: Person)
-    }
+    interface ViewModel : PersonModificationFragment.ViewModel
 }
