@@ -4,11 +4,14 @@
 
     <data>
         <variable name="personItem" type="com.example.birthdaywishes.pojo.Person"/>
+        <import type="android.view.View"/>
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout android:orientation="vertical"
-                                                       android:layout_width="match_parent"
-                                                       android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@{personItem.hasBirthday() ? @drawable/selected_background : @drawable/unselected_background}">
 
         <TextView
                 android:id="@+id/personItemName_textView"
@@ -41,6 +44,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@mipmap/ic_launcher_round"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_giftcard"
+                android:id="@+id/personItemGift_imageView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility="@{personItem.hasBirthday() ? View.VISIBLE : View.GONE }"
+                android:layout_margin="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

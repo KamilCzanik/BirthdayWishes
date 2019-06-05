@@ -29,7 +29,7 @@ class SelectWishesAdapter @Inject constructor() : WishesAdapter() {
 
         holder.itemView.setBackgroundResource(
             if (holder.adapterPosition == selectedWishesPos)
-                R.drawable.selected_recycler_item_background
+                R.drawable.selected_background
             else
                 Color.TRANSPARENT
         )

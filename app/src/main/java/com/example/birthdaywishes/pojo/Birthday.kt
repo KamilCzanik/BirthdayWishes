@@ -1,6 +1,5 @@
 package com.example.birthdaywishes.pojo
 
-import android.text.format.DateUtils
 import java.io.Serializable
 import java.text.DateFormatSymbols
 import java.util.*
@@ -15,10 +14,8 @@ data class Birthday constructor(val day: Int,val month: Int) : Serializable{
 
     fun toDateString() = "$day ${DateFormatSymbols().months[month-1]}"
 
-    fun isToday() = DateUtils.isToday(
-        Calendar.getInstance().apply {
-            set(Calendar.MONTH,month)
-            set(Calendar.DAY_OF_MONTH,day)
-            set(Calendar.HOUR_OF_DAY,8)
-        }.timeInMillis)
+    fun isToday() : Boolean {
+        val today = Calendar.getInstance()
+        return today.get(Calendar.MONTH) == month-1 && today.get(Calendar.DAY_OF_MONTH) == day
+    }
 }
