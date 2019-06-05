@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.birthdaywishes.repository.PersonRepository
 import com.example.birthdaywishes.systemService.BirthdayAlarmScheduler
 import com.example.birthdaywishes.ui.personModification.EditPersonFragment
-import com.example.birthdaywishes.viewmodel.EditPersonViewModel
+import com.example.birthdaywishes.viewmodel.personModification.EditPersonViewModel
 import dagger.Module
 import dagger.Provides
 

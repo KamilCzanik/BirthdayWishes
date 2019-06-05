@@ -1,11 +1,10 @@
-package com.example.birthdaywishes.viewmodel
+package com.example.birthdaywishes.viewmodel.personModification
 
 import android.app.Application
 import com.example.birthdaywishes.pojo.Person
 import com.example.birthdaywishes.repository.PersonRepository
 import com.example.birthdaywishes.systemService.BirthdayAlarmScheduler
 import com.example.birthdaywishes.ui.personModification.EditPersonFragment
-import com.example.birthdaywishes.viewmodel.personModification.PersonModificationViewModel
 import javax.inject.Inject
 
 class EditPersonViewModel(application: Application) : PersonModificationViewModel(application),EditPersonFragment.ViewModel {
