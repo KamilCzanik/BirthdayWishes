@@ -3,9 +3,10 @@ package com.example.birthdaywishes.adapter
 import android.graphics.Color
 import android.view.ViewGroup
 import com.example.birthdaywishes.R
+import javax.inject.Inject
 
 
-class SelectWishesAdapter : WishesAdapter() {
+class SelectWishesAdapter @Inject constructor() : WishesAdapter() {
 
     private var selectedWishesPos: Int = 0
 

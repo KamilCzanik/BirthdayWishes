@@ -20,7 +20,7 @@ class PersonViewModel(application: Application) : AndroidViewModel(application),
     @Inject lateinit var smsManager: SmsManager
     @Inject lateinit var intentBuilder: ShareCompat.IntentBuilder
 
-    override val allWishes = wishesRepository.wishes
+    override val allWishes by lazy { wishesRepository.wishes }
     override val permissionEvent = MutableLiveData<PermissionEvent>()
 
     override lateinit var currentPerson: Person

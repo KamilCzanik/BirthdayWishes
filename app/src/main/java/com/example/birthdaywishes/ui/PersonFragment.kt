@@ -16,6 +16,9 @@ import com.example.birthdaywishes.PermissionNotGrantedEvent
 import com.example.birthdaywishes.R
 import com.example.birthdaywishes.adapter.SelectWishesAdapter
 import com.example.birthdaywishes.databinding.FragmentPersonBinding
+import com.example.birthdaywishes.di.dao.DaoModule
+import com.example.birthdaywishes.di.person.DaggerPersonComponent
+import com.example.birthdaywishes.di.person.PersonModule
 import com.example.birthdaywishes.pojo.Person
 import com.example.birthdaywishes.pojo.Wishes
 import kotlinx.android.synthetic.main.fragment_person.*
@@ -31,15 +34,23 @@ class PersonFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        injectDependencies()
         binding = FragmentPersonBinding.inflate(inflater,container,false)
         viewModel.currentPerson = args.person
         return binding.root
     }
 
+    private fun injectDependencies() {
+        DaggerPersonComponent.builder()
+            .daoModule(DaoModule(activity!!.application))
+            .personModule(PersonModule(activity as MainActivity))
+            .build()
+            .inject(this)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        injectDependencies()
         configureRecyclerWishesRecycler()
         configureButtons()
         bindPersonData()
@@ -65,10 +76,6 @@ class PersonFragment : Fragment() {
 
     private fun shareWishes() {
         viewModel.shareWishes(wishesAdapter.getSelectedWishes())
-    }
-
-    private fun injectDependencies() {
-        //todo
     }
 
     private fun bindPersonData() {
