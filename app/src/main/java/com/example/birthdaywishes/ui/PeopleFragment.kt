@@ -81,6 +81,7 @@ class PeopleFragment : Fragment() {
             .setMessage(R.string.remove_person_question)
             .setPositiveButton(R.string.submit) { _,_ -> viewModel.delete(person)}
             .setNegativeButton(R.string.cancel) {dialog,_ -> dialog.cancel() }
+            .setOnCancelListener {peopleAdapter.notifyDataSetChanged()}
             .setCancelable(true)
             .create().show()
     }
