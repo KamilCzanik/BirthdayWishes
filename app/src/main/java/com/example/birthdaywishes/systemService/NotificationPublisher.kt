@@ -28,7 +28,7 @@ class NotificationPublisher {
                 .build()
 
             (context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).notify(
-                person.id!!/*as channel*/,
+                person.id?.toInt()!!/*as channel*/,
                 notification
             )
         }

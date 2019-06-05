@@ -21,8 +21,10 @@ class AddPersonViewModel(application: Application) : AndroidViewModel(applicatio
     override fun add(person: Person) {
         if(person.isDataValid()) {
             personDataEvent.value = ValidPersonDataEvent()
-            personRepository.add(person)
-            scheduler.scheduleBirthdayAlarm(person)
+            personRepository.add(person) { id ->
+                person.id = id
+                scheduler.scheduleBirthdayAlarm(person)
+            }
         } else
             personDataEvent.value = InvalidPersonDataEvent()
     }

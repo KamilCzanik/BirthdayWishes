@@ -7,7 +7,7 @@ import com.example.birthdaywishes.pojo.Person
 @Dao
 interface PersonDao {
 
-    @Insert fun insert(person: Person)
+    @Insert fun insert(person: Person) : Long
     @Delete fun delete(person: Person)
     @Update fun update(person: Person)
 
