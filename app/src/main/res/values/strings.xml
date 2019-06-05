@@ -19,4 +19,7 @@
     <string name="channel_name">birthday_channel</string>
     <string name="send">Send</string>
     <string name="share">Share</string>
+    <string name="permission_not_granted_toast">Permission not granted</string>
+    <string name="sms_send">Sms send</string>
+    <string name="select_action_chooser">Select action</string>
 </resources>

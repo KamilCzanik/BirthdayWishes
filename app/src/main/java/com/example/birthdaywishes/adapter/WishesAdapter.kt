@@ -9,7 +9,7 @@ import com.example.birthdaywishes.databinding.WishesItemBinding
 import com.example.birthdaywishes.pojo.Wishes
 import javax.inject.Inject
 
-class WishesAdapter @Inject constructor() : ListAdapter<Wishes, WishesAdapter.ViewHolder>(DIFF_CALLBACK) {
+open class WishesAdapter @Inject constructor() : ListAdapter<Wishes, WishesAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(WishesItemBinding.inflate(LayoutInflater.from(parent.context),parent,false))

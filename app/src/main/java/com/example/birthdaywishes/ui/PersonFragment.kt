@@ -5,15 +5,94 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.birthdaywishes.PermissionEvent
+import com.example.birthdaywishes.PermissionNotGrantedEvent
 import com.example.birthdaywishes.R
+import com.example.birthdaywishes.adapter.SelectWishesAdapter
+import com.example.birthdaywishes.databinding.FragmentPersonBinding
+import com.example.birthdaywishes.pojo.Person
+import com.example.birthdaywishes.pojo.Wishes
+import kotlinx.android.synthetic.main.fragment_person.*
+import javax.inject.Inject
 
 class PersonFragment : Fragment() {
 
+    private lateinit var binding : FragmentPersonBinding
+    private val args: PersonFragmentArgs by navArgs()
+
+    @Inject lateinit var wishesAdapter : SelectWishesAdapter
+    @Inject lateinit var viewModel: ViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_person, container, false)
+        binding = FragmentPersonBinding.inflate(inflater,container,false)
+        viewModel.currentPerson = args.person
+        return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        injectDependencies()
+        configureRecyclerWishesRecycler()
+        configureButtons()
+        bindPersonData()
+        observeViewModel()
+    }
+
+    private fun configureRecyclerWishesRecycler() {
+        personFragmentWishes_recyclerView.apply {
+            adapter = wishesAdapter
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+        }
+    }
+
+    private fun configureButtons() {
+        personFragmentSend_button.setOnClickListener { sendWishes() }
+        personFragmentShare_button.setOnClickListener { shareWishes()  }
+    }
+
+    private fun sendWishes() {
+        viewModel.sendWishes(wishesAdapter.getSelectedWishes())
+    }
+
+    private fun shareWishes() {
+        viewModel.shareWishes(wishesAdapter.getSelectedWishes())
+    }
+
+    private fun injectDependencies() {
+        //todo
+    }
+
+    private fun bindPersonData() {
+        binding.personItem = viewModel.currentPerson
+        binding.executePendingBindings()
+    }
+
+    private fun observeViewModel() {
+        viewModel.allWishes.observe(this, Observer { wishesAdapter.submitList(it) })
+        viewModel.permissionEvent.observe(this, Observer { event ->
+            if(event is PermissionNotGrantedEvent )
+                Toast.makeText(context,R.string.permission_not_granted_toast,Toast.LENGTH_LONG).show()
+            else
+                Toast.makeText(context,R.string.sms_send,Toast.LENGTH_LONG).show()
+        })
+    }
+
+    interface ViewModel {
+        val allWishes: LiveData<List<Wishes>>
+        val permissionEvent: LiveData<PermissionEvent>
+        var currentPerson: Person
+
+        fun sendWishes(wishes: Wishes)
+        fun shareWishes(wishes: Wishes)
+    }
 
 }

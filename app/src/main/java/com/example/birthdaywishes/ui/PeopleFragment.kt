@@ -31,7 +31,7 @@ class PeopleFragment : Fragment() {
     val onPersonItemClickListener = object : OnPersonItemClickListener {
         override fun onClick(pos: Int) {
             val person = peopleAdapter.getPersonAt(pos)
-            val navAction = PeopleFragmentDirections.actionPeopleFragmentToEditPersonFragment(person)
+            val navAction = PeopleFragmentDirections.actionPeopleFragmentToPersonFragment(person)
             findNavController().navigate(navAction)
         }
     }
