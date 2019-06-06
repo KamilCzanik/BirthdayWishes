@@ -2,13 +2,12 @@ package com.example.birthdaywishes.ui
 
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.birthdaywishes.PermissionEvent
@@ -32,12 +31,29 @@ class PersonFragment : Fragment() {
     @Inject lateinit var wishesAdapter : SelectWishesAdapter
     @Inject lateinit var viewModel: ViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        setHasOptionsMenu(true)
         injectDependencies()
         binding = FragmentPersonBinding.inflate(inflater,container,false)
         viewModel.currentPerson = args.person
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater) {
+        inflater.inflate(R.menu.person_fragment_menu,menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.action_edit_person)
+            editPerson()
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun editPerson() {
+        val navAction = PersonFragmentDirections.actionPersonFragmentToEditPersonFragment((viewModel.currentPerson))
+        findNavController().navigate(navAction)
     }
 
     private fun injectDependencies() {
