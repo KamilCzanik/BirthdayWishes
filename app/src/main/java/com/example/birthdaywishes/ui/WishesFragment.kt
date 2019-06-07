@@ -16,6 +16,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.birthdaywishes.R
 import com.example.birthdaywishes.adapter.WishesAdapter
 import com.example.birthdaywishes.appearAndSlideUp
+import com.example.birthdaywishes.di.dao.DaoModule
+import com.example.birthdaywishes.di.wishes.DaggerWishesComponent
+import com.example.birthdaywishes.di.wishes.WishesModule
 import com.example.birthdaywishes.pojo.Wishes
 import com.example.birthdaywishes.slideDownAndDisappear
 import kotlinx.android.synthetic.main.fragment_people.*
@@ -28,7 +31,16 @@ class WishesFragment : Fragment() {
     @Inject lateinit var wishesAdapter: WishesAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        injectDependencies()
         return inflater.inflate(R.layout.fragment_wishes, container, false)
+    }
+
+    private fun injectDependencies() {
+        DaggerWishesComponent.builder()
+            .daoModule(DaoModule(activity!!.application))
+            .wishesModule(WishesModule(activity!!.application))
+            .build()
+            .inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,24 +66,32 @@ class WishesFragment : Fragment() {
         }).attachToRecyclerView(peopleFragment_recyclerView)
     }
 
-    private fun setOnClickListeners() {
-        wishesFragment_fab.setOnClickListener { wishesFragmentInputField_cardView.appearAndSlideUp() }
-        fragmentWishesCancel_button.setOnClickListener { wishesFragmentInputField_cardView.slideDownAndDisappear() }
-        fragmentWishesSubmit_button.setOnClickListener { addWishes() }
-    }
-
     private fun setUpObservers() {
         viewModel.wishes.observe(this, Observer { wishesAdapter.submitList(it) })
+    }
+
+    private fun setOnClickListeners() {
+        wishesFragment_fab.setOnClickListener {
+            setWishesInputVisible(wishesFragmentInputField_cardView.visibility == View.GONE)
+        }
+        fragmentWishesCancel_button.setOnClickListener { setWishesInputVisible(false) }
+        fragmentWishesSubmit_button.setOnClickListener { addWishes() }
     }
 
     private fun addWishes() {
         val wishes = Wishes(wishesFragmentInput_editText.text.toString().trim())
         if(wishes.content.isNotEmpty()) {
             viewModel.add(wishes)
-            wishesFragmentInputField_cardView.slideDownAndDisappear()
-        }
-        else
+            setWishesInputVisible(false)
+        } else
             Toast.makeText(context,R.string.insert_wishes_content_toast,Toast.LENGTH_LONG).show()
+    }
+
+    private fun setWishesInputVisible(setVisible: Boolean) {
+        if(setVisible)
+            wishesFragmentInputField_cardView.appearAndSlideUp()
+        else
+            wishesFragmentInputField_cardView.slideDownAndDisappear()
     }
 
     fun showRemoveWishesAlertDialog(wishes: Wishes) {

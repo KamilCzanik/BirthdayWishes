@@ -32,7 +32,7 @@
             app:cardElevation="@dimen/cardview_custom_elevation"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent" android:visibility="gone">
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="250dp">
@@ -50,6 +50,8 @@
                     android:layout_margin="4dp"
                     app:layout_constraintBottom_toTopOf="@+id/fragmentWishesCancel_button"/>
             <Button
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:id="@+id/fragmentWishesCancel_button"
                     app:layout_constraintEnd_toStartOf="@+id/fragmentWishesSubmit_button"
@@ -58,6 +60,8 @@
                     app:layout_constraintBottom_toBottomOf="@+id/fragmentWishesSubmit_button"
                     android:text="@string/cancel"/>
             <Button
+                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"

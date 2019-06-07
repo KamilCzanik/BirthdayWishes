@@ -5,6 +5,7 @@
     <fragment android:id="@+id/peopleFragment" android:name="com.example.birthdaywishes.ui.PeopleFragment" tools:layout="@layout/fragment_people">
         <action android:id="@+id/action_peopleFragment_to_addPersonFragment" app:destination="@id/addPersonFragment"/>
         <action android:id="@+id/action_peopleFragment_to_personFragment" app:destination="@id/personFragment"/>
+        <action android:id="@+id/action_peopleFragment_to_wishesFragment" app:destination="@id/wishesFragment"/>
     </fragment>
     <fragment android:id="@+id/editPersonFragment"
               android:name="com.example.birthdaywishes.ui.personModification.EditPersonFragment" tools:layout="@layout/fragment_edit_person">
@@ -16,4 +17,6 @@
         <action android:id="@+id/action_personFragment_to_editPersonFragment" app:destination="@id/editPersonFragment"/>
         <argument android:name="person" app:argType="com.example.birthdaywishes.pojo.Person"/>
     </fragment>
+    <fragment android:id="@+id/wishesFragment" android:name="com.example.birthdaywishes.ui.WishesFragment"
+              android:label="WishesFragment"/>
 </navigation>
