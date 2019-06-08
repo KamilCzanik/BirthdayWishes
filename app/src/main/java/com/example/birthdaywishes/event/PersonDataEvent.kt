@@ -1,4 +1,4 @@
-package com.example.birthdaywishes
+package com.example.birthdaywishes.event
 
 abstract class PersonDataEvent
 

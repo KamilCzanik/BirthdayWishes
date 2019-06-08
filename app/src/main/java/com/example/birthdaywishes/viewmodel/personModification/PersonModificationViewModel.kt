@@ -3,9 +3,9 @@ package com.example.birthdaywishes.viewmodel.personModification
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.birthdaywishes.InvalidPersonDataEvent
-import com.example.birthdaywishes.PersonDataEvent
-import com.example.birthdaywishes.ValidPersonDataEvent
+import com.example.birthdaywishes.event.InvalidPersonDataEvent
+import com.example.birthdaywishes.event.PersonDataEvent
+import com.example.birthdaywishes.event.ValidPersonDataEvent
 import com.example.birthdaywishes.pojo.Person
 import com.example.birthdaywishes.ui.personModification.PersonModificationFragment
 
@@ -21,9 +21,11 @@ abstract class PersonModificationViewModel(application: Application) : AndroidVi
             invalidPersonData()
     }
 
-    private fun invalidPersonData() { personDataEvent.value = InvalidPersonDataEvent() }
+    private fun invalidPersonData() { personDataEvent.value = InvalidPersonDataEvent()
+    }
 
-    private fun validPersonData() { personDataEvent.value = ValidPersonDataEvent() }
+    private fun validPersonData() { personDataEvent.value = ValidPersonDataEvent()
+    }
 
     protected abstract fun saveToRepository(person: Person)
 }

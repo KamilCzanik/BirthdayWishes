@@ -6,10 +6,9 @@ import android.telephony.SmsManager
 import androidx.core.app.ShareCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.birthdaywishes.*
-import com.example.birthdaywishes.event.EmptyWishesEvent
-import com.example.birthdaywishes.event.ValidWishesEvent
-import com.example.birthdaywishes.event.WishesEvent
+import com.example.birthdaywishes.PermissionManager
+import com.example.birthdaywishes.R
+import com.example.birthdaywishes.event.*
 import com.example.birthdaywishes.pojo.Person
 import com.example.birthdaywishes.pojo.Wishes
 import com.example.birthdaywishes.repository.WishesRepository

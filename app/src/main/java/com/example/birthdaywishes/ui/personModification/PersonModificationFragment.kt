@@ -8,10 +8,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import com.example.birthdaywishes.InvalidPersonDataEvent
-import com.example.birthdaywishes.PersonDataEvent
 import com.example.birthdaywishes.R
 import com.example.birthdaywishes.databinding.FragmentEditPersonBinding
+import com.example.birthdaywishes.event.InvalidPersonDataEvent
+import com.example.birthdaywishes.event.PersonDataEvent
 import com.example.birthdaywishes.pojo.Birthday
 import com.example.birthdaywishes.pojo.DaysOfMonth
 import com.example.birthdaywishes.pojo.Person

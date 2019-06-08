@@ -10,8 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.birthdaywishes.PermissionEvent
-import com.example.birthdaywishes.PermissionNotGrantedEvent
 import com.example.birthdaywishes.R
 import com.example.birthdaywishes.adapter.SelectWishesAdapter
 import com.example.birthdaywishes.databinding.FragmentPersonBinding
@@ -19,6 +17,8 @@ import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.person.DaggerPersonComponent
 import com.example.birthdaywishes.di.person.PersonModule
 import com.example.birthdaywishes.event.EmptyWishesEvent
+import com.example.birthdaywishes.event.PermissionEvent
+import com.example.birthdaywishes.event.PermissionNotGrantedEvent
 import com.example.birthdaywishes.event.WishesEvent
 import com.example.birthdaywishes.pojo.Person
 import com.example.birthdaywishes.pojo.Wishes
@@ -108,7 +108,7 @@ class PersonFragment : Fragment() {
     }
 
     private fun handlePermissionEvent(event: PermissionEvent) {
-        if(event is PermissionNotGrantedEvent )
+        if(event is PermissionNotGrantedEvent)
             Toast.makeText(context,R.string.permission_not_granted_toast,Toast.LENGTH_LONG).show()
         else
             activity!!.onBackPressed()
