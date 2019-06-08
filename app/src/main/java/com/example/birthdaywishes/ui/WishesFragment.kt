@@ -21,7 +21,6 @@ import com.example.birthdaywishes.di.wishes.DaggerWishesComponent
 import com.example.birthdaywishes.di.wishes.WishesModule
 import com.example.birthdaywishes.pojo.Wishes
 import com.example.birthdaywishes.slideDownAndDisappear
-import kotlinx.android.synthetic.main.fragment_people.*
 import kotlinx.android.synthetic.main.fragment_wishes.*
 import javax.inject.Inject
 
@@ -63,7 +62,7 @@ class WishesFragment : Fragment() {
                 showRemoveWishesAlertDialog(wishesAdapter.getWishesAt(viewHolder.adapterPosition))
 
 
-        }).attachToRecyclerView(peopleFragment_recyclerView)
+        }).attachToRecyclerView(wishesFragment_recyclerView)
     }
 
     private fun setUpObservers() {
@@ -101,7 +100,9 @@ class WishesFragment : Fragment() {
             .setPositiveButton(R.string.submit) { _,_ -> viewModel.delete(wishes)}
             .setNegativeButton(R.string.cancel) {dialog,_ -> dialog.cancel() }
             .setCancelable(true)
-            .create().show()
+            .setOnCancelListener { wishesAdapter.notifyDataSetChanged()}
+            .create()
+            .show()
     }
 
     interface ViewModel {
