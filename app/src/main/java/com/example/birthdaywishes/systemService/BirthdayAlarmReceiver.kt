@@ -17,7 +17,7 @@ class BirthdayAlarmReceiver : BroadcastReceiver() {
         extra?.let {
             val name = extra.getString(PERSON_NAME_EXTRA) ?: ""
             val id = extra.getLong(PERSON_ID_EXTRA,0)
-            NotificationPublisher.postNotification(context, name, id)
+            NotificationPublisher(context).postNotification(name, id)
         }
     }
 }
