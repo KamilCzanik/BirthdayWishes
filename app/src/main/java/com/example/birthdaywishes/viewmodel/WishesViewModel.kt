@@ -10,7 +10,7 @@ import javax.inject.Inject
 class WishesViewModel(application: Application) : AndroidViewModel(application),WishesFragment.ViewModel {
 
     @Inject lateinit var repository: WishesRepository
-    override val wishes by lazy { repository.wishes }
+    override val allItems by lazy { repository.wishes }
 
     override fun add(wishes: Wishes) {
         repository.add(wishes)

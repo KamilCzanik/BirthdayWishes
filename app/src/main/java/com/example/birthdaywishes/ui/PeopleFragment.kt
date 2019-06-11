@@ -1,15 +1,10 @@
 package com.example.birthdaywishes.ui
 
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.birthdaywishes.R
 import com.example.birthdaywishes.adapter.PeopleAdapter
@@ -21,17 +16,13 @@ import kotlinx.android.synthetic.main.fragment_people.*
 import javax.inject.Inject
 
 
-class PeopleFragment : Fragment() {
+class PeopleFragment : RecyclerViewFragment() {
 
     @Inject lateinit var viewModel: ViewModel
     @Inject lateinit var peopleAdapter: PeopleAdapter
 
     val onPersonItemClickListener = object : OnPersonItemClickListener {
-        override fun onClick(pos: Int) {
-            val person = peopleAdapter.getPersonAt(pos)
-            val navAction = PeopleFragmentDirections.actionPeopleFragmentToPersonFragment(person)
-            findNavController().navigate(navAction)
-        }
+        override fun onClick(pos: Int) { navigateToPersonFragment(peopleAdapter.getPersonAt(pos))}
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -40,29 +31,21 @@ class PeopleFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_people, container, false)
     }
 
-
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater) {
-        inflater.inflate(R.menu.people_fragment_menu,menu)
-        super.onCreateOptionsMenu(menu, inflater)
+    //region view configuration
+    override fun configureRecycler() {
+        basicConfiguration(peopleFragment_recyclerView)
+        peopleFragment_recyclerView.adapter = peopleAdapter
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.action_wishes) {
-            val navAction = PeopleFragmentDirections.actionPeopleFragmentToWishesFragment()
-            findNavController().navigate(navAction)
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        injectDependencies()
-        configureRecycler()
+    override fun setOnClickListeners() {
         peopleFragment_fab.setOnClickListener { findNavController().navigate(R.id.action_peopleFragment_to_addPersonFragment)}
-        viewModel.people.observe(this, Observer { peopleAdapter.submitList(it) })
     }
 
-    private fun injectDependencies() {
+    override fun setUpObservers() {
+        viewModel.allItems.observe(this, Observer { peopleAdapter.submitList(it) })
+    }
+
+    override fun injectDependencies() {
         DaggerPeopleComponent
             .builder()
             .peopleModule(PeopleModule(activity!!.application,this))
@@ -71,41 +54,46 @@ class PeopleFragment : Fragment() {
             .inject(this)
     }
 
-    private fun configureRecycler() {
-        peopleFragment_recyclerView.layoutManager = LinearLayoutManager(context)
-        peopleFragment_recyclerView.setHasFixedSize(true)
-        peopleFragment_recyclerView.adapter = peopleAdapter
+    //endregion
 
-        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
-
-            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder) = false
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) =
-                showRemovePersonAlertDialog(peopleAdapter.getPersonAt(viewHolder.adapterPosition))
-
-
-        }).attachToRecyclerView(peopleFragment_recyclerView)
+    //region recycler actions impl
+    override fun onItemSwipe(viewHolder: RecyclerView.ViewHolder) {
+        showRemovingDialog(
+            peopleAdapter.getPersonAt(viewHolder.adapterPosition),
+            {peopleAdapter.notifyDataSetChanged()})
     }
 
+    override fun <T> deleteItem(item: T) { viewModel.delete(item as Person) }
 
-    fun showRemovePersonAlertDialog(person: Person) {
-        AlertDialog.Builder(context)
-            .setTitle(R.string.delete)
-            .setMessage(R.string.remove_person_question)
-            .setPositiveButton(R.string.submit) { _,_ -> viewModel.delete(person)}
-            .setNegativeButton(R.string.cancel) {dialog,_ -> dialog.cancel() }
-            .setOnCancelListener {peopleAdapter.notifyDataSetChanged()}
-            .setCancelable(true)
-            .create().show()
+    //endregion
+
+    //region options menu config
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater) {
+        inflater.inflate(R.menu.people_fragment_menu,menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
-    interface OnPersonItemClickListener {
-        fun onClick(pos: Int)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.action_wishes) goToWishesFragment()
+        return super.onOptionsItemSelected(item)
     }
 
-    interface ViewModel {
-        val people: LiveData<List<Person>>
+    //endregion
 
-        fun delete(person: Person)
+    //region navigation
+    private fun goToWishesFragment() {
+        val navAction = PeopleFragmentDirections.actionPeopleFragmentToWishesFragment()
+        findNavController().navigate(navAction)
     }
+
+    private fun navigateToPersonFragment(person: Person) {
+        val navAction = PeopleFragmentDirections.actionPeopleFragmentToPersonFragment(person)
+        findNavController().navigate(navAction)
+    }
+
+    //endregion
+
+    interface OnPersonItemClickListener { fun onClick(pos: Int) }
+
+    interface ViewModel : RecyclerViewFragment.ViewModel<Person>
 }

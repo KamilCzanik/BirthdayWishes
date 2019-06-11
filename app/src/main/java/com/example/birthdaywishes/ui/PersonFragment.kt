@@ -17,8 +17,6 @@ import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.person.DaggerPersonComponent
 import com.example.birthdaywishes.di.person.PersonModule
 import com.example.birthdaywishes.event.EmptyWishesEvent
-import com.example.birthdaywishes.event.PermissionEvent
-import com.example.birthdaywishes.event.PermissionNotGrantedEvent
 import com.example.birthdaywishes.event.WishesEvent
 import com.example.birthdaywishes.pojo.Person
 import com.example.birthdaywishes.pojo.Wishes
@@ -103,15 +101,7 @@ class PersonFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.allWishes.observe(this, Observer { wishesAdapter.submitList(it) })
-        viewModel.permissionEvent.observe(this, Observer { event -> handlePermissionEvent(event)})
         viewModel.wishesEvent.observe(this, Observer { event -> handleWishesEvent(event) })
-    }
-
-    private fun handlePermissionEvent(event: PermissionEvent) {
-        if(event is PermissionNotGrantedEvent)
-            Toast.makeText(context,R.string.permission_not_granted_toast,Toast.LENGTH_LONG).show()
-        else
-            activity!!.onBackPressed()
     }
 
     private fun handleWishesEvent(event: WishesEvent) {
@@ -119,9 +109,9 @@ class PersonFragment : Fragment() {
             Toast.makeText(context,R.string.select_wishes,Toast.LENGTH_LONG).show()
     }
 
+
     interface ViewModel {
         val allWishes: LiveData<List<Wishes>>
-        val permissionEvent: LiveData<PermissionEvent>
         val wishesEvent: LiveData<WishesEvent>
         var currentPerson: Person
 

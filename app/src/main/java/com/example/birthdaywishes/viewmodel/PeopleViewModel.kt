@@ -10,7 +10,7 @@ import javax.inject.Inject
 class PeopleViewModel(application: Application) : AndroidViewModel(application),PeopleFragment.ViewModel {
 
     @Inject lateinit var repository: PeopleRepository
-    override val people by lazy { repository.people }
+    override val allItems by lazy { repository.people }
 
     override fun delete(person: Person) { repository.delete(person) }
 }
