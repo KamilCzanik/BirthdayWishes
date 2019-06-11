@@ -1,4 +1,4 @@
-package com.example.birthdaywishes.systemService
+package com.example.birthdaywishes.system
 
 import android.app.AlarmManager
 import android.app.PendingIntent
