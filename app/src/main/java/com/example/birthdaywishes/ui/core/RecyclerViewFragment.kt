@@ -63,6 +63,6 @@ abstract class RecyclerViewFragment : Fragment() {
     interface ViewModel<T> {
         val allItems: LiveData<List<T>>
 
-        fun delete(wishes: T)
+        fun delete(item: T)
     }
 }

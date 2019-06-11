@@ -16,7 +16,7 @@ class WishesViewModel(application: Application) : AndroidViewModel(application),
         repository.add(wishes)
     }
 
-    override fun delete(wishes: Wishes) {
-        repository.delete(wishes)
+    override fun delete(item: Wishes) {
+        repository.delete(item)
     }
 }
