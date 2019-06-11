@@ -1,6 +1,6 @@
 package com.example.birthdaywishes.pojo
 
-abstract class DaysOfMonth {
+abstract class DaysInMonth {
 
     companion object {
 

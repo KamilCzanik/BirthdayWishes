@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.NumberPicker
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -12,10 +13,12 @@ import com.example.birthdaywishes.databinding.FragmentEditPersonBinding
 import com.example.birthdaywishes.event.InvalidPersonDataEvent
 import com.example.birthdaywishes.event.PersonDataEvent
 import com.example.birthdaywishes.pojo.Birthday
-import com.example.birthdaywishes.pojo.DaysOfMonth
+import com.example.birthdaywishes.pojo.DaysInMonth
 import com.example.birthdaywishes.pojo.Person
 import com.example.birthdaywishes.showLongToast
 import kotlinx.android.synthetic.main.fragment_edit_person.*
+import kotlinx.android.synthetic.main.fragment_edit_person.editPersonFragmentDay_numberPicker as dayPicker
+import kotlinx.android.synthetic.main.fragment_edit_person.editPersonFragmentMonth_numberPicker as monthPicker
 
 abstract class PersonModificationFragment : Fragment() {
 
@@ -51,21 +54,20 @@ abstract class PersonModificationFragment : Fragment() {
     }
 
     private fun setMinMaxPickersValues() {
-        editPersonFragmentMonth_numberPicker.minValue = 1
-        editPersonFragmentMonth_numberPicker.maxValue = 12
-        editPersonFragmentDay_numberPicker.minValue = DaysOfMonth.MIN_DAYS
-        editPersonFragmentDay_numberPicker.maxValue = DaysOfMonth[1]
+        monthPicker.minValue = 1
+        monthPicker.maxValue = 12
+        dayPicker.minValue = DaysInMonth.MIN_DAYS
+        dayPicker.maxValue = DaysInMonth[1]
     }
 
     private fun setDaysValueController() {
-        editPersonFragmentMonth_numberPicker.setOnValueChangedListener { _, _, newMonth ->
-            val monthDayCount = DaysOfMonth[newMonth]
+        monthPicker.setOnValueChangedListener(getDaysValueController())
+    }
 
-            editPersonFragmentDay_numberPicker.maxValue = monthDayCount
-
-            if(editPersonFragmentDay_numberPicker.value > monthDayCount)
-                editPersonFragmentDay_numberPicker.value = monthDayCount
-        }
+    private fun getDaysValueController() = NumberPicker.OnValueChangeListener { _, _, newMonth ->
+        val daysInMonth = DaysInMonth[newMonth]
+        dayPicker.maxValue = daysInMonth
+        if(day > daysInMonth) day = daysInMonth
     }
 
     private fun configureButtons() {
@@ -77,17 +79,19 @@ abstract class PersonModificationFragment : Fragment() {
 
     private fun finishFragment() { activity?.onBackPressed() }
 
-    protected open fun getPerson() = Person( getName(), getBirthday(), getPhone())
+    protected open fun getPerson() = Person( name, birthday, phone)
 
-    private fun getBirthday() = Birthday( getDay(), getMonth())
+    private var day: Int
+    get() = dayPicker.value
+    set(value) { dayPicker.value = value}
 
-    private fun getDay() = editPersonFragmentDay_numberPicker.value
+    private val month = monthPicker.value
 
-    private fun getMonth() = editPersonFragmentMonth_numberPicker.value
+    private val birthday = Birthday( day, month)
 
-    private fun getName() = editPersonFragmentName_editText.text.toString().trim()
+    private val name = editPersonFragmentName_editText.text.toString().trim()
 
-    private fun getPhone() = editPersonFragmentPhone_editText.text.toString().trim()
+    private val phone = editPersonFragmentPhone_editText.text.toString().trim()
 
     interface ViewModel {
         val personDataEvent : LiveData<PersonDataEvent>
