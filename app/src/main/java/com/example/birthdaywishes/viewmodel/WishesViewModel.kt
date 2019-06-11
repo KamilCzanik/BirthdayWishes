@@ -12,11 +12,8 @@ class WishesViewModel(application: Application) : AndroidViewModel(application),
     @Inject lateinit var repository: WishesRepository
     override val allItems by lazy { repository.wishes }
 
-    override fun add(wishes: Wishes) {
-        repository.add(wishes)
-    }
+    override fun add(wishes: Wishes) = repository.add(wishes)
 
-    override fun delete(item: Wishes) {
-        repository.delete(item)
-    }
+
+    override fun delete(item: Wishes) = repository.delete(item)
 }

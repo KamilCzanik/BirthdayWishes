@@ -30,10 +30,11 @@ class PersonViewModel(application: Application) : AndroidViewModel(application),
     override lateinit var currentPerson: Person
 
     override fun shareWishes(wishes: Wishes) {
-        if(wishes.content.isNotEmpty()) {
+        val content = wishes.content
+        if(content.isNotEmpty()) {
             intentBuilder
                 .setType("text/plain")
-                .setText(wishes.content)
+                .setText(content)
                 .setChooserTitle(R.string.select_action_chooser)
                 .startChooser()
             validWishesEvent()
@@ -43,15 +44,16 @@ class PersonViewModel(application: Application) : AndroidViewModel(application),
 
     override fun sendWishes(wishes: Wishes) {
         if (wishes.content.isNotEmpty()) {
-            if(permissionManager.isPermissionGranted(SEND_SMS)) {
+            if(arePermissionGranted()) {
                 permissionGranted(wishes)
                 validWishesEvent()
-            }
-            else
+            } else
                 permissionNotGranted()
         } else
             emptyWishesEvent()
     }
+
+    private fun arePermissionGranted() = permissionManager.isPermissionGranted(SEND_SMS)
 
     private fun emptyWishesEvent() { wishesEvent.value = EmptyWishesEvent() }
 
@@ -66,7 +68,6 @@ class PersonViewModel(application: Application) : AndroidViewModel(application),
             null)
     }
 
-    private fun permissionNotGranted() {
-        permissionManager.requestPermission(arrayOf(SEND_SMS),5)
-    }
+    private fun permissionNotGranted() = permissionManager.requestPermission(arrayOf(SEND_SMS),5)
+
 }

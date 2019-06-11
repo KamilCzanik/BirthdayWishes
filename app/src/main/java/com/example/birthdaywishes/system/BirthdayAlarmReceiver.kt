@@ -15,7 +15,7 @@ class BirthdayAlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val extra = intent.extras
         extra?.let {
-            val name = extra.getString(PERSON_NAME_EXTRA) ?: ""
+            val name = extra.getString(PERSON_NAME_EXTRA)!!
             val id = extra.getLong(PERSON_ID_EXTRA,0)
             NotificationPublisher(context).postNotification(name, id)
         }

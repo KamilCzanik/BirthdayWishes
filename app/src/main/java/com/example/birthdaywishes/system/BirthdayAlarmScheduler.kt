@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import com.example.birthdaywishes.pojo.Person
 import java.util.*
+import java.util.Calendar.*
 import javax.inject.Inject
 
 class BirthdayAlarmScheduler @Inject constructor(
@@ -16,12 +17,12 @@ class BirthdayAlarmScheduler @Inject constructor(
         val today = Calendar.getInstance()
         val calendar = Calendar.getInstance()
         calendar.apply {
-            set(Calendar.MONTH,person.birthday.month-1)
-            set(Calendar.DAY_OF_MONTH,person.birthday.day)
-            set(Calendar.HOUR_OF_DAY,0)
-            set(Calendar.MINUTE,0)
-            set(Calendar.SECOND,1)
-            if(before(today)) add(Calendar.YEAR,1)
+            set(MONTH,person.birthday.month-1)
+            set(DAY_OF_MONTH,person.birthday.day)
+            set(HOUR_OF_DAY,0)
+            set(MINUTE,0)
+            set(SECOND,1)
+            if(before(today)) add(YEAR,1)
         }
 
         alarmManager.set(
