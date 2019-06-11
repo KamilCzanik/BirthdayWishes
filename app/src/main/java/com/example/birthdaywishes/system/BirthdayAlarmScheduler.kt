@@ -32,7 +32,7 @@ class BirthdayAlarmScheduler @Inject constructor(
     }
 
     private fun getPendingIntent(person: Person) = PendingIntent.getBroadcast(
-        context,person.id?.toInt()!!,getAlarmIntent(person),PendingIntent.FLAG_UPDATE_CURRENT)
+        context,person.id.toInt(),getAlarmIntent(person),PendingIntent.FLAG_UPDATE_CURRENT)
 
     private fun getAlarmIntent(person: Person) : Intent {
         val intent = Intent(context,BirthdayAlarmReceiver::class.java)
