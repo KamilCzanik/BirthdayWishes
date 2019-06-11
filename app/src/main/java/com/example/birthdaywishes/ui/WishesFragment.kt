@@ -58,8 +58,7 @@ class WishesFragment : RecyclerViewFragment<Wishes>() {
     //region recycler actions impl
     override fun onItemSwipe(viewHolder: RecyclerView.ViewHolder) {
         showRemovingDialog(
-            wishesAdapter.getWishesAt(viewHolder.adapterPosition),
-            {wishesAdapter.notifyDataSetChanged()})
+            wishesAdapter.getWishesAt(viewHolder.adapterPosition)) {wishesAdapter.notifyDataSetChanged()}
     }
 
     override fun deleteItem(item: Wishes) { viewModel.delete(item) }
