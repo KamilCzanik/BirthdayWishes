@@ -7,9 +7,10 @@ import com.example.birthdaywishes.event.InvalidPersonDataEvent
 import com.example.birthdaywishes.event.PersonDataEvent
 import com.example.birthdaywishes.event.ValidPersonDataEvent
 import com.example.birthdaywishes.pojo.Person
-import com.example.birthdaywishes.ui.personModification.PersonModificationFragment
+import com.example.birthdaywishes.ui.core.PersonModificationFragment
 
-abstract class PersonModificationViewModel(application: Application) : AndroidViewModel(application),PersonModificationFragment.ViewModel {
+abstract class PersonModificationViewModel(application: Application) : AndroidViewModel(application),
+    PersonModificationFragment.ViewModel {
 
     override val personDataEvent = MutableLiveData<PersonDataEvent>()
 

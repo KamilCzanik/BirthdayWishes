@@ -1,4 +1,4 @@
-package com.example.birthdaywishes.ui.personModification
+package com.example.birthdaywishes.ui
 
 import android.os.Bundle
 import android.view.View
@@ -7,6 +7,8 @@ import com.example.birthdaywishes.di.SystemServiceModule
 import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.personModification.editPerson.DaggerEditPersonComponent
 import com.example.birthdaywishes.di.personModification.editPerson.EditPersonModule
+import com.example.birthdaywishes.ui.core.EditPersonFragmentArgs
+import com.example.birthdaywishes.ui.core.PersonModificationFragment
 import javax.inject.Inject
 
 class EditPersonFragment : PersonModificationFragment() {

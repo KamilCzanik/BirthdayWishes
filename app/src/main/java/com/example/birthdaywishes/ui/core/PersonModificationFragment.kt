@@ -1,4 +1,4 @@
-package com.example.birthdaywishes.ui.personModification
+package com.example.birthdaywishes.ui.core
 
 import android.os.Bundle
 import android.view.LayoutInflater

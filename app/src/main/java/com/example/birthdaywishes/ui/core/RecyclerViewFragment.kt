@@ -1,4 +1,4 @@
-package com.example.birthdaywishes.ui
+package com.example.birthdaywishes.ui.core
 
 import android.app.AlertDialog
 import android.os.Bundle

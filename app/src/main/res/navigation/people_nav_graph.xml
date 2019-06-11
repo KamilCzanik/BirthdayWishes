@@ -8,10 +8,10 @@
         <action android:id="@+id/action_peopleFragment_to_wishesFragment" app:destination="@id/wishesFragment"/>
     </fragment>
     <fragment android:id="@+id/editPersonFragment"
-              android:name="com.example.birthdaywishes.ui.personModification.EditPersonFragment" tools:layout="@layout/fragment_edit_person">
+              android:name="com.example.birthdaywishes.ui.EditPersonFragment" tools:layout="@layout/fragment_edit_person">
         <argument android:name="person" app:argType="com.example.birthdaywishes.pojo.Person"/>
     </fragment>
-    <fragment android:id="@+id/addPersonFragment" android:name="com.example.birthdaywishes.ui.personModification.AddPersonFragment" tools:layout="@layout/fragment_edit_person"/>
+    <fragment android:id="@+id/addPersonFragment" android:name="com.example.birthdaywishes.ui.AddPersonFragment" tools:layout="@layout/fragment_edit_person"/>
     <fragment android:id="@+id/personFragment" android:name="com.example.birthdaywishes.ui.PersonFragment"
               android:label="PersonFragment">
         <action android:id="@+id/action_personFragment_to_editPersonFragment" app:destination="@id/editPersonFragment"/>
