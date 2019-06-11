@@ -7,15 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
-import com.example.birthdaywishes.R
+import com.example.birthdaywishes.*
 import com.example.birthdaywishes.adapter.WishesAdapter
-import com.example.birthdaywishes.appearAndSlideUp
 import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.wishes.DaggerWishesComponent
 import com.example.birthdaywishes.di.wishes.WishesModule
 import com.example.birthdaywishes.pojo.Wishes
-import com.example.birthdaywishes.showLongToast
-import com.example.birthdaywishes.slideDownAndDisappear
 import com.example.birthdaywishes.ui.core.RecyclerViewFragment
 import kotlinx.android.synthetic.main.fragment_wishes.*
 import javax.inject.Inject
@@ -32,8 +29,8 @@ class WishesFragment : RecyclerViewFragment<Wishes>() {
     //region view configuration
     override fun injectDependencies() {
         DaggerWishesComponent.builder()
-            .daoModule(DaoModule(activity!!.application))
-            .wishesModule(WishesModule(activity!!.application))
+            .daoModule(DaoModule(application()))
+            .wishesModule(WishesModule(application()))
             .build()
             .inject(this)
     }

@@ -2,6 +2,7 @@ package com.example.birthdaywishes.ui
 
 
 import android.os.Bundle
+import com.example.birthdaywishes.application
 import com.example.birthdaywishes.di.SystemServiceModule
 import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.personModification.addPerson.AddPersonModule
@@ -20,8 +21,8 @@ class AddPersonFragment : PersonModificationFragment() {
 
     private fun injectDependencies() {
         DaggerAddPersonComponent.builder()
-            .addPersonModule(AddPersonModule(activity!!.application))
-            .daoModule(DaoModule(activity!!.application))
+            .addPersonModule(AddPersonModule(application()))
+            .daoModule(DaoModule(application()))
             .systemServiceModule(SystemServiceModule(context!!))
             .build()
             .inject(this)

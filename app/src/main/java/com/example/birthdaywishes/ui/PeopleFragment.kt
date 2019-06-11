@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.birthdaywishes.R
 import com.example.birthdaywishes.adapter.PeopleAdapter
+import com.example.birthdaywishes.application
 import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.people.DaggerPeopleComponent
 import com.example.birthdaywishes.di.people.PeopleModule
@@ -49,8 +50,8 @@ class PeopleFragment : RecyclerViewFragment<Person>() {
     override fun injectDependencies() {
         DaggerPeopleComponent
             .builder()
-            .peopleModule(PeopleModule(activity!!.application,this))
-            .daoModule(DaoModule(activity!!.application))
+            .peopleModule(PeopleModule(application(),this))
+            .daoModule(DaoModule(application()))
             .build()
             .inject(this)
     }

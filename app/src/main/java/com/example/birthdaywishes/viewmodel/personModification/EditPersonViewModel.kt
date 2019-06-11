@@ -12,6 +12,7 @@ class EditPersonViewModel(application: Application) : PersonModificationViewMode
 
     @Inject lateinit var personRepository: PersonRepository
     @Inject lateinit var scheduler: BirthdayAlarmScheduler
+    override lateinit var personToEdit: Person
 
     override fun saveToRepository(person: Person) {
         personRepository.update(person)

@@ -17,13 +17,6 @@ class PermissionManager @Inject constructor(private val mainActivity: MainActivi
         ) == PackageManager.PERMISSION_GRANTED
     }
 
-    fun arePermissionsGranted(permissions: Array<String>): Boolean {
-        for (permission in permissions)
-            if (!isPermissionGranted(permission))
-                return false
-        return true
-    }
-
     fun requestPermission(permissions: Array<String>, requestCode: Int) {
         ActivityCompat.requestPermissions(
             mainActivity,

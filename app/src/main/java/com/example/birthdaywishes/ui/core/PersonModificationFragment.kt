@@ -12,6 +12,7 @@ import com.example.birthdaywishes.R
 import com.example.birthdaywishes.databinding.FragmentEditPersonBinding
 import com.example.birthdaywishes.event.InvalidPersonDataEvent
 import com.example.birthdaywishes.event.PersonDataEvent
+import com.example.birthdaywishes.finishFragment
 import com.example.birthdaywishes.pojo.Birthday
 import com.example.birthdaywishes.pojo.DaysInMonth
 import com.example.birthdaywishes.pojo.Person
@@ -76,8 +77,6 @@ abstract class PersonModificationFragment : Fragment() {
     }
 
     private fun savePerson() = viewModel.save(getPerson())
-
-    private fun finishFragment() { activity?.onBackPressed() }
 
     protected open fun getPerson() = Person( getName(), getBirthday(), getPhone())
 
