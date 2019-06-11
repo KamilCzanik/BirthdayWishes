@@ -75,14 +75,14 @@ class PeopleFragment : RecyclerViewFragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.action_wishes) goToWishesFragment()
+        if(item.itemId == R.id.action_wishes) navigateToWishesFragment()
         return super.onOptionsItemSelected(item)
     }
 
     //endregion
 
     //region navigation
-    private fun goToWishesFragment() {
+    private fun navigateToWishesFragment() {
         val navAction = PeopleFragmentDirections.actionPeopleFragmentToWishesFragment()
         findNavController().navigate(navAction)
     }

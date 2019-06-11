@@ -46,12 +46,12 @@ class PersonFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.action_edit_person)
-            editPerson()
+            navigateToEditPersonFragment()
 
         return super.onOptionsItemSelected(item)
     }
 
-    private fun editPerson() {
+    private fun navigateToEditPersonFragment() {
         val navAction = PersonFragmentDirections.actionPersonFragmentToEditPersonFragment((viewModel.currentPerson))
         findNavController().navigate(navAction)
     }
