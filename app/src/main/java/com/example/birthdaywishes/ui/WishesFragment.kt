@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.birthdaywishes.R
@@ -15,6 +14,7 @@ import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.wishes.DaggerWishesComponent
 import com.example.birthdaywishes.di.wishes.WishesModule
 import com.example.birthdaywishes.pojo.Wishes
+import com.example.birthdaywishes.showLongToast
 import com.example.birthdaywishes.slideDownAndDisappear
 import com.example.birthdaywishes.ui.core.RecyclerViewFragment
 import kotlinx.android.synthetic.main.fragment_wishes.*
@@ -84,7 +84,7 @@ class WishesFragment : RecyclerViewFragment() {
             viewModel.add(wishes)
             setWishesInputVisible(false)
         } else
-            Toast.makeText(context,R.string.insert_wishes_content_toast,Toast.LENGTH_LONG).show()
+            showLongToast(R.string.insert_wishes_content_toast)
     }
 
     interface ViewModel : RecyclerViewFragment.ViewModel<Wishes> {

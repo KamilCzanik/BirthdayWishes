@@ -7,7 +7,6 @@ import com.example.birthdaywishes.di.SystemServiceModule
 import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.personModification.editPerson.DaggerEditPersonComponent
 import com.example.birthdaywishes.di.personModification.editPerson.EditPersonModule
-import com.example.birthdaywishes.ui.core.EditPersonFragmentArgs
 import com.example.birthdaywishes.ui.core.PersonModificationFragment
 import javax.inject.Inject
 

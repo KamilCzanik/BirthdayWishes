@@ -4,6 +4,8 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewPropertyAnimator
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 
 fun View.slideDownAndDisappear() {
     animate()
@@ -15,4 +17,8 @@ fun View.appearAndSlideUp(): ViewPropertyAnimator {
     visibility = VISIBLE
     return animate()
         .translationY(0.0f)
+}
+
+fun Fragment.showLongToast(resId: Int) {
+    Toast.makeText(context,resId,Toast.LENGTH_LONG).show()
 }

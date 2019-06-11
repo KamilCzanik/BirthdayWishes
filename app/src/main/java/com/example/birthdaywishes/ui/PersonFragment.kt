@@ -3,7 +3,6 @@ package com.example.birthdaywishes.ui
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -20,6 +19,7 @@ import com.example.birthdaywishes.event.EmptyWishesEvent
 import com.example.birthdaywishes.event.WishesEvent
 import com.example.birthdaywishes.pojo.Person
 import com.example.birthdaywishes.pojo.Wishes
+import com.example.birthdaywishes.showLongToast
 import kotlinx.android.synthetic.main.fragment_person.*
 import javax.inject.Inject
 
@@ -105,8 +105,7 @@ class PersonFragment : Fragment() {
     }
 
     private fun handleWishesEvent(event: WishesEvent) {
-        if(event is EmptyWishesEvent)
-            Toast.makeText(context,R.string.select_wishes,Toast.LENGTH_LONG).show()
+        if(event is EmptyWishesEvent) showLongToast(R.string.select_wishes)
     }
 
 
