@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -15,6 +14,7 @@ import com.example.birthdaywishes.event.PersonDataEvent
 import com.example.birthdaywishes.pojo.Birthday
 import com.example.birthdaywishes.pojo.DaysOfMonth
 import com.example.birthdaywishes.pojo.Person
+import com.example.birthdaywishes.showLongToast
 import kotlinx.android.synthetic.main.fragment_edit_person.*
 
 abstract class PersonModificationFragment : Fragment() {
@@ -35,13 +35,14 @@ abstract class PersonModificationFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.personDataEvent.observe(this, Observer {dataEvent ->
-            if (dataEvent is InvalidPersonDataEvent)
-                Toast.makeText(context, R.string.invalid_person_data_toast, Toast.LENGTH_LONG).show()
-            else
-                Toast.makeText(context,"Person created", Toast.LENGTH_LONG).show()
-            //TODO change to other fragment
-        })
+        viewModel.personDataEvent.observe(this, Observer {event -> handlePersonEvent(event)})
+    }
+
+    private  fun handlePersonEvent(event: PersonDataEvent) {
+        when(event) {
+            is InvalidPersonDataEvent ->  showLongToast(R.string.invalid_person_data_toast)
+            else -> finishFragment()
+        }
     }
 
     private fun configureNumberPickers() {
@@ -67,21 +68,26 @@ abstract class PersonModificationFragment : Fragment() {
         }
     }
 
-    protected open fun getPerson() = Person(
-        editPersonFragmentName_editText.text.toString().trim(),
-        getBirthday(),
-        editPersonFragmentPhone_editText.text.toString().trim()
-    )
-
-    private fun getBirthday() = Birthday(
-        editPersonFragmentDay_numberPicker.value,
-        editPersonFragmentMonth_numberPicker.value
-    )
-
     private fun configureButtons() {
-        editPersonFragmentCancel_button.setOnClickListener { activity?.onBackPressed() }
-        editPersonFragmentSubmit_button.setOnClickListener { viewModel.save(getPerson()) }
+        editPersonFragmentCancel_button.setOnClickListener { finishFragment() }
+        editPersonFragmentSubmit_button.setOnClickListener { savePerson() }
     }
+
+    private fun savePerson() = viewModel.save(getPerson())
+
+    private fun finishFragment() { activity?.onBackPressed() }
+
+    protected open fun getPerson() = Person( getName(), getBirthday(), getPhone())
+
+    private fun getBirthday() = Birthday( getDay(), getMonth())
+
+    private fun getDay() = editPersonFragmentDay_numberPicker.value
+
+    private fun getMonth() = editPersonFragmentMonth_numberPicker.value
+
+    private fun getName() = editPersonFragmentName_editText.text.toString().trim()
+
+    private fun getPhone() = editPersonFragmentPhone_editText.text.toString().trim()
 
     interface ViewModel {
         val personDataEvent : LiveData<PersonDataEvent>
