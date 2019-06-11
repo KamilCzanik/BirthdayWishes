@@ -20,7 +20,7 @@ import com.example.birthdaywishes.ui.core.RecyclerViewFragment
 import kotlinx.android.synthetic.main.fragment_wishes.*
 import javax.inject.Inject
 
-class WishesFragment : RecyclerViewFragment() {
+class WishesFragment : RecyclerViewFragment<Wishes>() {
 
     @Inject lateinit var viewModel: ViewModel
     @Inject lateinit var wishesAdapter: WishesAdapter
@@ -62,7 +62,7 @@ class WishesFragment : RecyclerViewFragment() {
             {wishesAdapter.notifyDataSetChanged()})
     }
 
-    override fun <T> deleteItem(item: T) { viewModel.delete(item as Wishes) }
+    override fun deleteItem(item: Wishes) { viewModel.delete(item) }
 
     //endregion
 

@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_people.*
 import javax.inject.Inject
 
 
-class PeopleFragment : RecyclerViewFragment() {
+class PeopleFragment : RecyclerViewFragment<Person>() {
 
     @Inject lateinit var viewModel: ViewModel
     @Inject lateinit var peopleAdapter: PeopleAdapter
@@ -60,11 +60,10 @@ class PeopleFragment : RecyclerViewFragment() {
     //region recycler actions impl
     override fun onItemSwipe(viewHolder: RecyclerView.ViewHolder) {
         showRemovingDialog(
-            peopleAdapter.getPersonAt(viewHolder.adapterPosition),
-            {peopleAdapter.notifyDataSetChanged()})
+            peopleAdapter.getPersonAt(viewHolder.adapterPosition)) {peopleAdapter.notifyDataSetChanged()}
     }
 
-    override fun <T> deleteItem(item: T) { viewModel.delete(item as Person) }
+    override fun deleteItem(item: Person) { viewModel.delete(item) }
 
     //endregion
 

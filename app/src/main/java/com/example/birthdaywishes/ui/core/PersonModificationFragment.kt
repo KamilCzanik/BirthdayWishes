@@ -79,19 +79,19 @@ abstract class PersonModificationFragment : Fragment() {
 
     private fun finishFragment() { activity?.onBackPressed() }
 
-    protected open fun getPerson() = Person( name, birthday, phone)
+    protected open fun getPerson() = Person( getName(), getBirthday(), getPhone())
 
     private var day: Int
     get() = dayPicker.value
     set(value) { dayPicker.value = value}
 
-    private val month = monthPicker.value
+    private fun getMonth() = monthPicker.value
 
-    private val birthday = Birthday( day, month)
+    private fun getBirthday() = Birthday( day, getMonth())
 
-    private val name = editPersonFragmentName_editText.text.toString().trim()
+    private fun getName() = editPersonFragmentName_editText.text.toString().trim()
 
-    private val phone = editPersonFragmentPhone_editText.text.toString().trim()
+    private fun getPhone() = editPersonFragmentPhone_editText.text.toString().trim()
 
     interface ViewModel {
         val personDataEvent : LiveData<PersonDataEvent>

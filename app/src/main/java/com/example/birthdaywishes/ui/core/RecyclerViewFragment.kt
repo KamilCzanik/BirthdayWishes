@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.birthdaywishes.R
 
-abstract class RecyclerViewFragment : Fragment() {
+abstract class RecyclerViewFragment<T> : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,7 +46,7 @@ abstract class RecyclerViewFragment : Fragment() {
 
     abstract fun onItemSwipe(viewHolder: RecyclerView.ViewHolder)
 
-    fun <T> showRemovingDialog(item: T,onDialogCancel: () -> Any) {
+    fun showRemovingDialog(item: T,onDialogCancel: () -> Any) {
         AlertDialog.Builder(context)
             .setTitle(R.string.delete)
             .setMessage(R.string.remove_item_question)
@@ -58,7 +58,7 @@ abstract class RecyclerViewFragment : Fragment() {
             .show()
     }
     
-    abstract fun <T> deleteItem(item: T)
+    abstract fun deleteItem(item: T)
 
     interface ViewModel<T> {
         val allItems: LiveData<List<T>>
