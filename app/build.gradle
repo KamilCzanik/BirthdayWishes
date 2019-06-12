@@ -60,4 +60,5 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     implementation 'com.beust:klaxon:5.0.5'
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
 }

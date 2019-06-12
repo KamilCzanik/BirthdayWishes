@@ -1,13 +1,19 @@
 package com.example.birthdaywishes.adapter
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.amulyakhare.textdrawable.TextDrawable
+import com.amulyakhare.textdrawable.util.ColorGenerator
 import com.example.birthdaywishes.databinding.PersonItemBinding
+import com.example.birthdaywishes.firstLetter
 import com.example.birthdaywishes.pojo.Person
 import com.example.birthdaywishes.ui.PeopleFragment
+import kotlinx.android.synthetic.main.person_item.view.*
 import javax.inject.Inject
 
 class PeopleAdapter @Inject constructor(
@@ -32,14 +38,24 @@ class PeopleAdapter @Inject constructor(
 
     fun getPersonAt(pos: Int): Person = getItem(pos)
 
-    class ViewHolder
-        (private val binding: PersonItemBinding,
-         private val onCLickListener: PeopleFragment.OnPersonItemClickListener) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(
+        private val binding: PersonItemBinding,
+        private val onCLickListener: PeopleFragment.OnPersonItemClickListener) : RecyclerView.ViewHolder(binding.root) {
+
+        private val personImage: ImageView by lazy { binding.root.personItemImage_imageView }
+        private val colorGenerator: ColorGenerator = ColorGenerator.MATERIAL
 
         fun bind(person: Person) {
             binding.personItem = person
             binding.executePendingBindings()
             binding.root.setOnClickListener { onCLickListener.onClick(adapterPosition) }
+            personImage.setImageDrawable(getTextDrawable(person))
         }
+
+        private fun getTextDrawable(person: Person) : Drawable = TextDrawable.builder().buildRound(getLetter(person),getColor(getLetter(person)))
+
+        private fun getColor(letter: String) = colorGenerator.getColor(letter)
+
+        private fun getLetter(person: Person) = person.name.firstLetter()
     }
 }

@@ -29,3 +29,5 @@ fun Fragment.application() = activity?.application!!
 fun Fragment.mainActivity() = activity as MainActivity
 
 fun Fragment.finishFragment() = activity?.onBackPressed()
+
+fun String.firstLetter() = substring(0,1).toUpperCase()
