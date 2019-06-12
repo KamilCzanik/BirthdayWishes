@@ -33,6 +33,11 @@ class PeopleFragment : RecyclerViewFragment<Person>() {
         return inflater.inflate(R.layout.fragment_people, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        activity?.setTitle(R.string.people)
+    }
+
     //region view configuration
     override fun configureRecycler() {
         basicConfiguration(peopleFragment_recyclerView)

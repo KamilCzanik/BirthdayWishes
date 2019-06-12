@@ -26,6 +26,11 @@ class WishesFragment : RecyclerViewFragment<Wishes>() {
         return inflater.inflate(R.layout.fragment_wishes, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        activity?.setTitle(R.string.wishes)
+    }
+
     //region view configuration
     override fun injectDependencies() {
         DaggerWishesComponent.builder()

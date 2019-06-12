@@ -2,6 +2,8 @@ package com.example.birthdaywishes.ui
 
 
 import android.os.Bundle
+import android.view.View
+import com.example.birthdaywishes.R
 import com.example.birthdaywishes.application
 import com.example.birthdaywishes.di.SystemServiceModule
 import com.example.birthdaywishes.di.dao.DaoModule
@@ -17,6 +19,11 @@ class AddPersonFragment : PersonModificationFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         injectDependencies()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        activity?.setTitle(R.string.add_person)
     }
 
     private fun injectDependencies() {

@@ -26,4 +26,8 @@
     <string name="wishes">Wishes</string>
     <string name="select_wishes">Select wishes</string>
     <string name="remove_item_question">Are you sure you want to remove this item?</string>
+    <string name="add_person">Add person</string>
+    <string name="person">Person</string>
+    <string name="people">People</string>
+    <string name="edit_person">Edit person</string>
 </resources>

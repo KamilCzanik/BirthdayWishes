@@ -59,6 +59,7 @@ class PersonFragment : Fragment() {
         configureButtons()
         bindPersonData()
         observeViewModel()
+        activity?.setTitle(R.string.person)
     }
 
     private fun configureRecyclerWishesRecycler() {

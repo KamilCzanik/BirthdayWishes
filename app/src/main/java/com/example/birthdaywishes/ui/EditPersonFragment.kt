@@ -3,6 +3,7 @@ package com.example.birthdaywishes.ui
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.navArgs
+import com.example.birthdaywishes.R
 import com.example.birthdaywishes.application
 import com.example.birthdaywishes.di.SystemServiceModule
 import com.example.birthdaywishes.di.dao.DaoModule
@@ -30,6 +31,7 @@ class EditPersonFragment : PersonModificationFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindData()
+        activity?.setTitle(R.string.edit_person)
     }
 
     private fun bindData() {
