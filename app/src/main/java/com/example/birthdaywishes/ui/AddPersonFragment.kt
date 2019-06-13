@@ -9,6 +9,7 @@ import com.example.birthdaywishes.di.SystemServiceModule
 import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.personModification.addPerson.AddPersonModule
 import com.example.birthdaywishes.di.personModification.addPerson.DaggerAddPersonComponent
+import com.example.birthdaywishes.setTitle
 import com.example.birthdaywishes.ui.core.PersonModificationFragment
 import javax.inject.Inject
 
@@ -23,7 +24,7 @@ class AddPersonFragment : PersonModificationFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.setTitle(R.string.add_person)
+        setTitle(R.string.add_person)
     }
 
     private fun injectDependencies() {

@@ -19,6 +19,7 @@ import com.example.birthdaywishes.di.person.PersonModule
 import com.example.birthdaywishes.mainActivity
 import com.example.birthdaywishes.pojo.Person
 import com.example.birthdaywishes.pojo.Wishes
+import com.example.birthdaywishes.setTitle
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_person.personFragmentSend_button as sendButton
 import kotlinx.android.synthetic.main.fragment_person.personFragmentShare_button as shareButton
@@ -55,7 +56,7 @@ class PersonFragment : Fragment() {
         configureButtons()
         bindPersonData()
         observe()
-        activity?.setTitle(R.string.person)
+        setTitle(R.string.person)
     }
 
     private fun configureRecyclerWishesRecycler() {

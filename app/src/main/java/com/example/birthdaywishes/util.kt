@@ -34,6 +34,8 @@ fun Fragment.mainActivity() = activity as MainActivity
 
 fun Fragment.finishFragment() = activity?.onBackPressed()
 
+fun Fragment.setTitle(resId: Int) = activity?.setTitle(resId)
+
 fun String.firstLetter() = substring(0,1).toUpperCase()
 
 fun getDrawableFor(person: Person) : Drawable {

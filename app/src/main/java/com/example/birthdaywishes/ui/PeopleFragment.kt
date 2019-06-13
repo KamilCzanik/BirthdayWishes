@@ -13,6 +13,7 @@ import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.people.DaggerPeopleComponent
 import com.example.birthdaywishes.di.people.PeopleModule
 import com.example.birthdaywishes.pojo.Person
+import com.example.birthdaywishes.setTitle
 import com.example.birthdaywishes.ui.core.RecyclerViewFragment
 import kotlinx.android.synthetic.main.fragment_people.*
 import javax.inject.Inject
@@ -35,7 +36,7 @@ class PeopleFragment : RecyclerViewFragment<Person>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.setTitle(R.string.people)
+        setTitle(R.string.people)
     }
 
     //region view configuration

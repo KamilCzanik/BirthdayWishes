@@ -9,15 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
-import com.example.birthdaywishes.R
+import com.example.birthdaywishes.*
 import com.example.birthdaywishes.adapter.WishesAdapter
-import com.example.birthdaywishes.appearAndSlideUp
-import com.example.birthdaywishes.application
 import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.wishes.DaggerWishesComponent
 import com.example.birthdaywishes.di.wishes.WishesModule
 import com.example.birthdaywishes.pojo.Wishes
-import com.example.birthdaywishes.slideDownAndDisappear
 import com.example.birthdaywishes.ui.core.RecyclerViewFragment
 import kotlinx.android.synthetic.main.fragment_wishes.*
 import javax.inject.Inject
@@ -37,7 +34,7 @@ class WishesFragment : RecyclerViewFragment<Wishes>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.setTitle(R.string.wishes)
+        setTitle(R.string.wishes)
         validateDataInRealTime()
     }
 

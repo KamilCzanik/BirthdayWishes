@@ -10,6 +10,7 @@ import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.personModification.editPerson.DaggerEditPersonComponent
 import com.example.birthdaywishes.di.personModification.editPerson.EditPersonModule
 import com.example.birthdaywishes.pojo.Person
+import com.example.birthdaywishes.setTitle
 import com.example.birthdaywishes.ui.core.PersonModificationFragment
 import javax.inject.Inject
 
@@ -31,7 +32,7 @@ class EditPersonFragment : PersonModificationFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindData()
-        activity?.setTitle(R.string.edit_person)
+        setTitle(R.string.edit_person)
     }
 
     private fun bindData() {
