@@ -1,12 +1,14 @@
 package com.example.birthdaywishes.ui
 
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.birthdaywishes.*
@@ -80,8 +82,15 @@ class WishesFragment : RecyclerViewFragment<Wishes>() {
     private fun setWishesInputVisible(setVisible: Boolean) {
         if(setVisible)
             cardView.appearAndSlideUp()
-        else
+        else {
+            dismissKeyboard()
             cardView.slideDownAndDisappear()
+        }
+    }
+
+    private fun dismissKeyboard() {
+        (context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).
+        hideSoftInputFromWindow(wishesInput.windowToken, 0)
     }
 
     private fun validateDataInRealTime() {
