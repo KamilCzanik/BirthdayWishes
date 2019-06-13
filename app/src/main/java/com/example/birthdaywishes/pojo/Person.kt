@@ -11,9 +11,7 @@ data class Person(
     val birthday: Birthday, val phoneNumber: String,
     @PrimaryKey(autoGenerate = true) var id: Long = 0) : Serializable{
 
-    fun isDataValid() = name.isNotEmpty() &&
-            phoneNumber.isNotEmpty() &&
-            Birthday.isDateValid(birthday.day,birthday.month)
+    fun isDataValid() = name.isNotEmpty() && Birthday.isDateValid(birthday.day,birthday.month)
 
     fun hasBirthday() = birthday.isToday()
 }

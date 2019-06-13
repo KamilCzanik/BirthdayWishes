@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="phone"
                     android:text="@{personItem.phoneNumber}"
-                    android:ems="10" android:hint="@string/phone" android:id="@+id/editPersonFragmentPhone_editText"/>
+                    android:ems="10" android:hint="@string/phone_hint" android:id="@+id/editPersonFragmentPhone_editText"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 

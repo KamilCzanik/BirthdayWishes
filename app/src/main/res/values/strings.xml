@@ -30,4 +30,5 @@
     <string name="person">Person</string>
     <string name="people">People</string>
     <string name="edit_person">Edit person</string>
+    <string name="phone_hint">Phone (not required)</string>
 </resources>
