@@ -1,25 +1,25 @@
 package com.example.birthdaywishes.ui.core
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.NumberPicker
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
-import com.example.birthdaywishes.R
 import com.example.birthdaywishes.databinding.FragmentEditPersonBinding
-import com.example.birthdaywishes.event.InvalidPersonDataEvent
-import com.example.birthdaywishes.event.PersonDataEvent
 import com.example.birthdaywishes.finishFragment
 import com.example.birthdaywishes.pojo.Birthday
 import com.example.birthdaywishes.pojo.DaysInMonth
 import com.example.birthdaywishes.pojo.Person
-import com.example.birthdaywishes.showLongToast
 import kotlinx.android.synthetic.main.fragment_edit_person.*
 import kotlinx.android.synthetic.main.fragment_edit_person.editPersonFragmentDay_numberPicker as dayPicker
 import kotlinx.android.synthetic.main.fragment_edit_person.editPersonFragmentMonth_numberPicker as monthPicker
+import kotlinx.android.synthetic.main.fragment_edit_person.editPersonFragmentName_editText as nameInput
+import kotlinx.android.synthetic.main.fragment_edit_person.editPersonFragmentPhone_editText as phoneInput
+import kotlinx.android.synthetic.main.fragment_edit_person.editPersonFragmentSubmit_button as saveButton
+
 
 abstract class PersonModificationFragment : Fragment() {
 
@@ -33,20 +33,21 @@ abstract class PersonModificationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observeViewModel()
         configureNumberPickers()
         configureButtons()
+        validateDataInRealTime()
     }
 
-    private fun observeViewModel() {
-        viewModel.personDataEvent.observe(this, Observer {event -> handlePersonEvent(event)})
-    }
+    private fun validateDataInRealTime() {
+        nameInput.addTextChangedListener(object : TextWatcher {
 
-    private  fun handlePersonEvent(event: PersonDataEvent) {
-        when(event) {
-            is InvalidPersonDataEvent ->  showLongToast(R.string.invalid_person_data_toast)
-            else -> finishFragment()
-        }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                saveButton.isEnabled = getName().isNotEmpty()
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        })
     }
 
     private fun configureNumberPickers() {
@@ -73,10 +74,13 @@ abstract class PersonModificationFragment : Fragment() {
 
     private fun configureButtons() {
         editPersonFragmentCancel_button.setOnClickListener { finishFragment() }
-        editPersonFragmentSubmit_button.setOnClickListener { savePerson() }
+        saveButton.setOnClickListener { savePerson() }
     }
 
-    private fun savePerson() = viewModel.save(getPerson())
+    private fun savePerson() {
+        viewModel.save(getPerson())
+        finishFragment()
+    }
 
     protected open fun getPerson() = Person( getName(), getBirthday(), getPhone())
 
@@ -88,12 +92,11 @@ abstract class PersonModificationFragment : Fragment() {
 
     private fun getBirthday() = Birthday( day, getMonth())
 
-    private fun getName() = editPersonFragmentName_editText.text.toString().trim()
+    private fun getName() = nameInput.text.toString().trim()
 
-    private fun getPhone() = editPersonFragmentPhone_editText.text.toString().trim()
+    private fun getPhone() = phoneInput.text.toString().trim()
 
     interface ViewModel {
-        val personDataEvent : LiveData<PersonDataEvent>
         fun save(person: Person)
     }
 }

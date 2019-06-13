@@ -2,20 +2,29 @@ package com.example.birthdaywishes.ui
 
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
-import com.example.birthdaywishes.*
+import com.example.birthdaywishes.R
 import com.example.birthdaywishes.adapter.WishesAdapter
+import com.example.birthdaywishes.appearAndSlideUp
+import com.example.birthdaywishes.application
 import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.wishes.DaggerWishesComponent
 import com.example.birthdaywishes.di.wishes.WishesModule
 import com.example.birthdaywishes.pojo.Wishes
+import com.example.birthdaywishes.slideDownAndDisappear
 import com.example.birthdaywishes.ui.core.RecyclerViewFragment
 import kotlinx.android.synthetic.main.fragment_wishes.*
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.fragment_wishes.fragmentWishesCancel_button as cancelButton
+import kotlinx.android.synthetic.main.fragment_wishes.fragmentWishesSubmit_button as submitButton
+import kotlinx.android.synthetic.main.fragment_wishes.wishesFragmentInputField_cardView as cardView
+import kotlinx.android.synthetic.main.fragment_wishes.wishesFragmentInput_editText as wishesInput
 
 class WishesFragment : RecyclerViewFragment<Wishes>() {
 
@@ -29,6 +38,7 @@ class WishesFragment : RecyclerViewFragment<Wishes>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.setTitle(R.string.wishes)
+        validateDataInRealTime()
     }
 
     //region view configuration
@@ -51,8 +61,8 @@ class WishesFragment : RecyclerViewFragment<Wishes>() {
 
     override fun setOnClickListeners() {
         wishesFragment_fab.setOnClickListener { setWishesInputVisible(isInputVisible()) }
-        fragmentWishesCancel_button.setOnClickListener { setWishesInputVisible(false) }
-        fragmentWishesSubmit_button.setOnClickListener { addWishes() }
+        cancelButton.setOnClickListener { setWishesInputVisible(false) }
+        submitButton.setOnClickListener { addWishes() }
     }
 
     //endregion
@@ -68,25 +78,38 @@ class WishesFragment : RecyclerViewFragment<Wishes>() {
     //endregion
 
     //region wishesInput management
-    private fun isInputVisible() = wishesFragmentInputField_cardView.visibility == View.GONE
+    private fun isInputVisible() = cardView.visibility == View.GONE
 
     private fun setWishesInputVisible(setVisible: Boolean) {
         if(setVisible)
-            wishesFragmentInputField_cardView.appearAndSlideUp()
+            cardView.appearAndSlideUp()
         else
-            wishesFragmentInputField_cardView.slideDownAndDisappear()
+            cardView.slideDownAndDisappear()
+    }
+
+    private fun validateDataInRealTime() {
+        wishesInput.addTextChangedListener(object : TextWatcher {
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                submitButton.isEnabled = getInsertedWishes().isNotEmpty()
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        })
     }
 
     //endregion
 
     private fun addWishes() {
-        val wishes = Wishes(wishesFragmentInput_editText.text.toString().trim())
-        if(wishes.content.isNotEmpty()) {
-            viewModel.add(wishes)
-            setWishesInputVisible(false)
-        } else
-            showLongToast(R.string.insert_wishes_content_toast)
+        viewModel.add(Wishes(getInsertedWishes()))
+        setWishesInputVisible(false)
+        clearInput()
     }
+
+    private fun getInsertedWishes() = wishesInput.text.toString().trim()
+
+    private fun clearInput() = wishesInput.setText("")
 
     interface ViewModel : RecyclerViewFragment.ViewModel<Wishes> {
         fun add(wishes: Wishes)
