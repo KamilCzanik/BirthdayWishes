@@ -16,13 +16,9 @@ import com.example.birthdaywishes.databinding.FragmentPersonBinding
 import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.person.DaggerPersonComponent
 import com.example.birthdaywishes.di.person.PersonModule
-import com.example.birthdaywishes.event.EmptyWishesEvent
-import com.example.birthdaywishes.event.WishesEvent
 import com.example.birthdaywishes.mainActivity
 import com.example.birthdaywishes.pojo.Person
 import com.example.birthdaywishes.pojo.Wishes
-import com.example.birthdaywishes.showLongToast
-import kotlinx.android.synthetic.main.fragment_person.*
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_person.personFragmentSend_button as sendButton
 import kotlinx.android.synthetic.main.fragment_person.personFragmentShare_button as shareButton
@@ -58,7 +54,7 @@ class PersonFragment : Fragment() {
         configureRecyclerWishesRecycler()
         configureButtons()
         bindPersonData()
-        observeViewModel()
+        observe()
         activity?.setTitle(R.string.person)
     }
 
@@ -72,7 +68,7 @@ class PersonFragment : Fragment() {
 
     private fun configureButtons() {
         sendButton.setOnClickListener { sendWishes() }
-        shareButton.setOnClickListener { shareWishes()  }
+        shareButton.setOnClickListener { shareWishes() }
     }
 
     private fun sendWishes() { viewModel.sendWishes(wishesAdapter.getSelectedWishes()) }
@@ -84,12 +80,13 @@ class PersonFragment : Fragment() {
         binding.executePendingBindings()
     }
 
-    private fun observeViewModel() {
+    private fun observe() {
         viewModel.allWishes.observe(this, Observer { wishesAdapter.submitList(it) })
-        viewModel.wishesEvent.observe(this, Observer { event -> handleWishesEvent(event) })
+        wishesAdapter.isAnyItemSelected.observe(this, Observer { isSelected ->
+            shareButton.isEnabled = isSelected
+            sendButton.isEnabled = isSelected && viewModel.currentPerson.phoneNumber.isNotEmpty()
+        })
     }
-
-    private fun handleWishesEvent(event: WishesEvent) { if(event is EmptyWishesEvent) showLongToast(R.string.select_wishes) }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.person_fragment_menu,menu)
@@ -110,7 +107,6 @@ class PersonFragment : Fragment() {
 
     interface ViewModel {
         val allWishes: LiveData<List<Wishes>>
-        val wishesEvent: LiveData<WishesEvent>
         var currentPerson: Person
 
         fun sendWishes(wishes: Wishes)
