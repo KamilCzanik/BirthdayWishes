@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Życzenia urodzinowe</string>
+    <string name="add_wishes_hint">Wprowadź życzenia</string>
+    <string name="add_person">Dodaj osobę</string>
+    <string name="birthday_reminder">Przypomnienie o urodzinach</string>
+    <string name="cancel">Anuluj</string>
+    <string name="day">Dzień</string>
+    <string name="delete">Usuń</string>
+    <string name="edit">Edytuj</string>
+    <string name="edit_person">Edytuj osobę</string>
+    <string name="month">Miesiąć</string>
+    <string name="name">Imie</string>
+    <string name="people">Ludzie</string>
+    <string name="person">Osoba</string>
+    <string name="phone_hint">Numer telefonu ( opcjonalnie )</string>
+    <string name="remove_item_question">Na pewno chcesz usunąć tą pozycję?</string>
+    <string name="select_action_chooser">Wybierz działanie</string>
+    <string name="select_wishes">Wybierz życzenia</string>
+    <string name="send">Wyślij</string>
+    <string name="share">Udostępnij</string>
+    <string name="submit">Zatwierdź</string>
+    <string name="wishes">Życzenia</string>
+</resources>

@@ -1,26 +1,16 @@
 <resources>
-    <string name="app_name">BirthdayWishes</string>
+    <string name="app_name">Birthday Wishes</string>
     <string name="delete">Delete</string>
-    <string name="remove_person_question">Do you want to remove this person from your list?</string>
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
-    <string name="remove_wishes_question">Do you want to remove this wishes?</string>
     <string name="add_wishes_hint">Insert wishes</string>
-    <string name="insert_wishes_content_toast">Insert wishes content</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="phone">Phone</string>
     <string name="name">Name</string>
     <string name="month">Month</string>
     <string name="day">Day</string>
-    <string name="invalid_person_data_toast">Invalid person data</string>
     <string name="birthday_reminder">Birthday reminder</string>
-    <string name="channel_name">birthday_channel</string>
+    <string name="channel_name" translatable="false">birthday_channel</string>
     <string name="send">Send</string>
     <string name="share">Share</string>
-    <string name="permission_not_granted_toast">Permission not granted</string>
-    <string name="sms_send">Sms send</string>
     <string name="select_action_chooser">Select action</string>
     <string name="edit">Edit</string>
     <string name="wishes">Wishes</string>
