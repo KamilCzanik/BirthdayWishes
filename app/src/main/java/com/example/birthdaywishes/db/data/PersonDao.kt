@@ -1,4 +1,4 @@
-package com.example.birthdaywishes.db.db
+package com.example.birthdaywishes.db.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

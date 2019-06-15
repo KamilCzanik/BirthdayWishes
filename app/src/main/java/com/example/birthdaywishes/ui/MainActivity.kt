@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.birthdaywishes.R
 import com.example.birthdaywishes.data.Wishes
 import com.example.birthdaywishes.db.WishesRepository
-import com.example.birthdaywishes.db.db.BirthdayWishesDatabase
+import com.example.birthdaywishes.db.data.BirthdayWishesDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 
 

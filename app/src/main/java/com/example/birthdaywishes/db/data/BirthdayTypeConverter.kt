@@ -1,4 +1,4 @@
-package com.example.birthdaywishes.db.db
+package com.example.birthdaywishes.db.data
 
 import androidx.room.TypeConverter
 import com.beust.klaxon.Klaxon

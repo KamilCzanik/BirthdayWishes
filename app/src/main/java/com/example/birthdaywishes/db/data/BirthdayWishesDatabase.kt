@@ -1,4 +1,4 @@
-package com.example.birthdaywishes.db.db
+package com.example.birthdaywishes.db.data
 
 import android.content.Context
 import androidx.room.Database
