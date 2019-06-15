@@ -108,10 +108,12 @@ class WishesFragment : RecyclerViewFragment<Wishes>() {
     //endregion
 
     private fun addWishes() {
-        viewModel.add(Wishes(getInsertedWishesContent()))
+        viewModel.add(getWishes())
         hideWishesInput()
         clearInput()
     }
+
+    private fun getWishes() = Wishes(getInsertedWishesContent())
 
     private fun getInsertedWishesContent() = wishesInput.text.toString().trim()
 
