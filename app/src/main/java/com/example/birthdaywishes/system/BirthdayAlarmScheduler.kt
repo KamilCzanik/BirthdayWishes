@@ -5,7 +5,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.text.format.DateUtils
-import com.example.birthdaywishes.pojo.Person
+import com.example.birthdaywishes.data.Person
 import java.util.*
 import java.util.Calendar.*
 import javax.inject.Inject

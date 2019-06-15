@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.birthdaywishes.R
 import com.example.birthdaywishes.adapter.SelectWishesAdapter
 import com.example.birthdaywishes.application
+import com.example.birthdaywishes.data.Person
+import com.example.birthdaywishes.data.Wishes
 import com.example.birthdaywishes.databinding.FragmentPersonBinding
 import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.person.DaggerPersonComponent
 import com.example.birthdaywishes.di.person.PersonModule
 import com.example.birthdaywishes.mainActivity
-import com.example.birthdaywishes.pojo.Person
-import com.example.birthdaywishes.pojo.Wishes
 import com.example.birthdaywishes.setTitle
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_person.personFragmentSend_button as sendButton

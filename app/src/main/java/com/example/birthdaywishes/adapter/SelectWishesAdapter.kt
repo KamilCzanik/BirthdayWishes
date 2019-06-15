@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import com.example.birthdaywishes.R
-import com.example.birthdaywishes.pojo.Wishes
+import com.example.birthdaywishes.data.Wishes
 import javax.inject.Inject
 
 

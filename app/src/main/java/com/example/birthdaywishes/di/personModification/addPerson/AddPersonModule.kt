@@ -2,7 +2,7 @@ package com.example.birthdaywishes.di.personModification.addPerson
 
 import android.app.Application
 import androidx.lifecycle.ViewModelProvider
-import com.example.birthdaywishes.repository.PersonRepository
+import com.example.birthdaywishes.db.PersonRepository
 import com.example.birthdaywishes.system.BirthdayAlarmScheduler
 import com.example.birthdaywishes.ui.AddPersonFragment
 import com.example.birthdaywishes.viewmodel.personModification.AddPersonViewModel

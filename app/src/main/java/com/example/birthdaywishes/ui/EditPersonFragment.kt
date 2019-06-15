@@ -5,11 +5,11 @@ import android.view.View
 import androidx.navigation.fragment.navArgs
 import com.example.birthdaywishes.R
 import com.example.birthdaywishes.application
+import com.example.birthdaywishes.data.Person
 import com.example.birthdaywishes.di.SystemServiceModule
 import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.personModification.editPerson.DaggerEditPersonComponent
 import com.example.birthdaywishes.di.personModification.editPerson.EditPersonModule
-import com.example.birthdaywishes.pojo.Person
 import com.example.birthdaywishes.setTitle
 import com.example.birthdaywishes.ui.core.PersonModificationFragment
 import javax.inject.Inject

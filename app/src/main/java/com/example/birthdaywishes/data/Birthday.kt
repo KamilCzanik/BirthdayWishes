@@ -1,4 +1,4 @@
-package com.example.birthdaywishes.pojo
+package com.example.birthdaywishes.data
 
 import java.io.Serializable
 import java.text.DateFormatSymbols

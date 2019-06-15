@@ -1,7 +1,7 @@
 package com.example.birthdaywishes.di.dao
 
 import android.app.Application
-import com.example.birthdaywishes.repository.db.BirthdayWishesDatabase
+import com.example.birthdaywishes.db.db.BirthdayWishesDatabase
 import dagger.Module
 import dagger.Provides
 

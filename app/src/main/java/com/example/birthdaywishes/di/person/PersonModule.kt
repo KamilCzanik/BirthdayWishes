@@ -4,7 +4,7 @@ import android.telephony.SmsManager
 import androidx.core.app.ShareCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.birthdaywishes.PermissionManager
-import com.example.birthdaywishes.repository.WishesRepository
+import com.example.birthdaywishes.db.WishesRepository
 import com.example.birthdaywishes.ui.MainActivity
 import com.example.birthdaywishes.ui.PersonFragment
 import com.example.birthdaywishes.viewmodel.PersonViewModel

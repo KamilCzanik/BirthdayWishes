@@ -2,8 +2,8 @@ package com.example.birthdaywishes.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.example.birthdaywishes.pojo.Person
-import com.example.birthdaywishes.repository.PeopleRepository
+import com.example.birthdaywishes.data.Person
+import com.example.birthdaywishes.db.PeopleRepository
 import com.example.birthdaywishes.ui.PeopleFragment
 import javax.inject.Inject
 

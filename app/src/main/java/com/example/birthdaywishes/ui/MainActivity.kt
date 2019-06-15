@@ -3,9 +3,9 @@ package com.example.birthdaywishes.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.birthdaywishes.R
-import com.example.birthdaywishes.pojo.Wishes
-import com.example.birthdaywishes.repository.WishesRepository
-import com.example.birthdaywishes.repository.db.BirthdayWishesDatabase
+import com.example.birthdaywishes.data.Wishes
+import com.example.birthdaywishes.db.WishesRepository
+import com.example.birthdaywishes.db.db.BirthdayWishesDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 
 

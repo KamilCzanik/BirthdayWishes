@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <variable name="wishesItem" type="com.example.birthdaywishes.pojo.Wishes"/>
+        <variable name="wishesItem" type="com.example.birthdaywishes.data.Wishes"/>
     </data>
 
     <LinearLayout

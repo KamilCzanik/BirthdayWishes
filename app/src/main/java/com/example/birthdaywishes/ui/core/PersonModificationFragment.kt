@@ -8,11 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.NumberPicker
 import androidx.fragment.app.Fragment
+import com.example.birthdaywishes.data.Birthday
+import com.example.birthdaywishes.data.DaysInMonth
+import com.example.birthdaywishes.data.Person
 import com.example.birthdaywishes.databinding.FragmentEditPersonBinding
 import com.example.birthdaywishes.finishFragment
-import com.example.birthdaywishes.pojo.Birthday
-import com.example.birthdaywishes.pojo.DaysInMonth
-import com.example.birthdaywishes.pojo.Person
 import kotlinx.android.synthetic.main.fragment_edit_person.*
 import kotlinx.android.synthetic.main.fragment_edit_person.editPersonFragmentDay_numberPicker as dayPicker
 import kotlinx.android.synthetic.main.fragment_edit_person.editPersonFragmentMonth_numberPicker as monthPicker

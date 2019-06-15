@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.birthdaywishes.data.Wishes
 import com.example.birthdaywishes.databinding.WishesItemBinding
-import com.example.birthdaywishes.pojo.Wishes
 import javax.inject.Inject
 
 open class WishesAdapter @Inject constructor() : ListAdapter<Wishes, WishesAdapter.ViewHolder>(DIFF_CALLBACK) {

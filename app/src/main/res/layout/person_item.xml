@@ -3,7 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="personItem" type="com.example.birthdaywishes.pojo.Person"/>
+        <variable name="personItem" type="com.example.birthdaywishes.data.Person"/>
         <import type="android.view.View"/>
     </data>
 

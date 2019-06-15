@@ -13,10 +13,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.birthdaywishes.*
 import com.example.birthdaywishes.adapter.WishesAdapter
+import com.example.birthdaywishes.data.Wishes
 import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.wishes.DaggerWishesComponent
 import com.example.birthdaywishes.di.wishes.WishesModule
-import com.example.birthdaywishes.pojo.Wishes
 import com.example.birthdaywishes.ui.core.RecyclerViewFragment
 import kotlinx.android.synthetic.main.fragment_wishes.*
 import javax.inject.Inject

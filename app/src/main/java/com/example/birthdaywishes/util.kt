@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
-import com.example.birthdaywishes.pojo.Person
+import com.example.birthdaywishes.data.Person
 import com.example.birthdaywishes.ui.MainActivity
 
 fun View.slideDownAndDisappear() {

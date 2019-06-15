@@ -6,9 +6,9 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.birthdaywishes.data.Person
 import com.example.birthdaywishes.databinding.PersonItemBinding
 import com.example.birthdaywishes.getDrawableFor
-import com.example.birthdaywishes.pojo.Person
 import com.example.birthdaywishes.ui.PeopleFragment
 import kotlinx.android.synthetic.main.person_item.view.*
 import javax.inject.Inject

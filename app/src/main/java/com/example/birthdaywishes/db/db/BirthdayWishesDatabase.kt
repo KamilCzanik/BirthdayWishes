@@ -1,12 +1,12 @@
-package com.example.birthdaywishes.repository.db
+package com.example.birthdaywishes.db.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.birthdaywishes.pojo.Person
-import com.example.birthdaywishes.pojo.Wishes
+import com.example.birthdaywishes.data.Person
+import com.example.birthdaywishes.data.Wishes
 
 @Database(entities = [Person::class, Wishes::class], version = 1, exportSchema = false)
 @TypeConverters(BirthdayTypeConverter::class)

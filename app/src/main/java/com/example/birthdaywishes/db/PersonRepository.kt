@@ -1,8 +1,8 @@
-package com.example.birthdaywishes.repository
+package com.example.birthdaywishes.db
 
 import android.os.AsyncTask
-import com.example.birthdaywishes.pojo.Person
-import com.example.birthdaywishes.repository.db.PersonDao
+import com.example.birthdaywishes.data.Person
+import com.example.birthdaywishes.db.db.PersonDao
 import javax.inject.Inject
 
 class PersonRepository @Inject constructor(private val personDao: PersonDao) {

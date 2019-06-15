@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.birthdaywishes.R
 import com.example.birthdaywishes.adapter.PeopleAdapter
 import com.example.birthdaywishes.application
+import com.example.birthdaywishes.data.Person
 import com.example.birthdaywishes.di.dao.DaoModule
 import com.example.birthdaywishes.di.people.DaggerPeopleComponent
 import com.example.birthdaywishes.di.people.PeopleModule
-import com.example.birthdaywishes.pojo.Person
 import com.example.birthdaywishes.setTitle
 import com.example.birthdaywishes.ui.core.RecyclerViewFragment
 import kotlinx.android.synthetic.main.fragment_people.*

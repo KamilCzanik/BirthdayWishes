@@ -1,8 +1,8 @@
-package com.example.birthdaywishes.repository.db
+package com.example.birthdaywishes.db.db
 
 import androidx.room.TypeConverter
 import com.beust.klaxon.Klaxon
-import com.example.birthdaywishes.pojo.Birthday
+import com.example.birthdaywishes.data.Birthday
 
 class BirthdayTypeConverter {
 

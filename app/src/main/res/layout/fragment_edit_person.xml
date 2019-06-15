@@ -4,7 +4,7 @@
         tools:context=".ui.AddPersonFragment">
 
     <data>
-        <variable name="personItem" type="com.example.birthdaywishes.pojo.Person"/>
+        <variable name="personItem" type="com.example.birthdaywishes.data.Person"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent" android:layout_height="match_parent"
