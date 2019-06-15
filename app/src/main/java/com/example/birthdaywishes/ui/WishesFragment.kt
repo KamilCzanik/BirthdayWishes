@@ -24,6 +24,8 @@ import kotlinx.android.synthetic.main.fragment_wishes.fragmentWishesCancel_butto
 import kotlinx.android.synthetic.main.fragment_wishes.fragmentWishesSubmit_button as submitButton
 import kotlinx.android.synthetic.main.fragment_wishes.wishesFragmentInputField_cardView as cardView
 import kotlinx.android.synthetic.main.fragment_wishes.wishesFragmentInput_editText as wishesInput
+import kotlinx.android.synthetic.main.fragment_wishes.wishesFragment_fab as fab
+
 
 class WishesFragment : RecyclerViewFragment<Wishes>() {
 
@@ -59,8 +61,8 @@ class WishesFragment : RecyclerViewFragment<Wishes>() {
     }
 
     override fun setOnClickListeners() {
-        wishesFragment_fab.setOnClickListener { setWishesInputVisible(isInputVisible()) }
-        cancelButton.setOnClickListener { setWishesInputVisible(false) }
+        fab.setOnClickListener { if(isInputVisible()) hideWishesInput() else showWishesInput() }
+        cancelButton.setOnClickListener { hideWishesInput() }
         submitButton.setOnClickListener { addWishes() }
     }
 
@@ -79,14 +81,12 @@ class WishesFragment : RecyclerViewFragment<Wishes>() {
     //region wishesInput management
     private fun isInputVisible() = cardView.visibility == View.GONE
 
-    private fun setWishesInputVisible(setVisible: Boolean) {
-        if(setVisible)
-            cardView.appearAndSlideUp()
-        else {
-            dismissKeyboard()
-            cardView.slideDownAndDisappear()
-        }
+    private fun hideWishesInput() {
+        cardView.slideDownAndDisappear()
+        dismissKeyboard()
     }
+
+    private fun showWishesInput() = cardView.appearAndSlideUp()
 
     private fun dismissKeyboard() {
         (context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).
@@ -97,7 +97,7 @@ class WishesFragment : RecyclerViewFragment<Wishes>() {
         wishesInput.addTextChangedListener(object : TextWatcher {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                submitButton.isEnabled = getInsertedWishes().isNotEmpty()
+                submitButton.isEnabled = getInsertedWishesContent().isNotEmpty()
             }
 
             override fun afterTextChanged(s: Editable?) {}
@@ -108,12 +108,12 @@ class WishesFragment : RecyclerViewFragment<Wishes>() {
     //endregion
 
     private fun addWishes() {
-        viewModel.add(Wishes(getInsertedWishes()))
-        setWishesInputVisible(false)
+        viewModel.add(Wishes(getInsertedWishesContent()))
+        hideWishesInput()
         clearInput()
     }
 
-    private fun getInsertedWishes() = wishesInput.text.toString().trim()
+    private fun getInsertedWishesContent() = wishesInput.text.toString().trim()
 
     private fun clearInput() = wishesInput.setText("")
 

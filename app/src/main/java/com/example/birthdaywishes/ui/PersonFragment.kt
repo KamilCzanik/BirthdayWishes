@@ -72,9 +72,11 @@ class PersonFragment : Fragment() {
         shareButton.setOnClickListener { shareWishes() }
     }
 
-    private fun sendWishes() { viewModel.sendWishes(wishesAdapter.getSelectedWishes()) }
+    private fun sendWishes() { viewModel.sendWishes(selectedWishes()) }
 
-    private fun shareWishes() { viewModel.shareWishes(wishesAdapter.getSelectedWishes()) }
+    private fun shareWishes() { viewModel.shareWishes(selectedWishes()) }
+
+    private fun selectedWishes() = wishesAdapter.getSelectedWishes()
 
     private fun bindPersonData() {
         binding.personItem = viewModel.currentPerson
@@ -82,11 +84,13 @@ class PersonFragment : Fragment() {
     }
 
     private fun observe() {
-        viewModel.allWishes.observe(this, Observer { wishesAdapter.submitList(it) })
-        wishesAdapter.isAnyItemSelected.observe(this, Observer { isSelected ->
-            shareButton.isEnabled = isSelected
-            sendButton.isEnabled = isSelected && viewModel.currentPerson.phoneNumber.isNotEmpty()
-        })
+        viewModel.allWishes.observe(this, Observer { wishes -> wishesAdapter.submitList(wishes) })
+        wishesAdapter.isAnyItemSelected.observe(this, getSelectionObserver() )
+    }
+
+    private fun getSelectionObserver() = Observer<Boolean> { isSelected ->
+        shareButton.isEnabled = isSelected
+        sendButton.isEnabled = isSelected && viewModel.currentPerson.phoneNumber.isNotEmpty()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

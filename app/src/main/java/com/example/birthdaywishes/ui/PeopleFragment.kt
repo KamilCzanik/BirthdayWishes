@@ -50,7 +50,7 @@ class PeopleFragment : RecyclerViewFragment<Person>() {
     }
 
     override fun setUpObservers() {
-        viewModel.allItems.observe(this, Observer { peopleAdapter.submitList(it) })
+        viewModel.allItems.observe(this, Observer { items -> peopleAdapter.submitList(items) })
     }
 
     override fun injectDependencies() {
