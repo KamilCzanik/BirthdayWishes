@@ -28,8 +28,11 @@ abstract class PersonModificationFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         personBinding = FragmentEditPersonBinding.inflate(inflater,container,false)
+        injectDependencies()
         return personBinding.root
     }
+
+    abstract fun injectDependencies()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,12 +44,12 @@ abstract class PersonModificationFragment : Fragment() {
     private fun validateDataInRealTime() {
         nameInput.addTextChangedListener(object : TextWatcher {
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 saveButton.isEnabled = getName().isNotEmpty()
             }
 
             override fun afterTextChanged(s: Editable?) {}
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
         })
     }
 
@@ -69,7 +72,7 @@ abstract class PersonModificationFragment : Fragment() {
     private fun getDaysValueController() = NumberPicker.OnValueChangeListener { _, _, newMonth ->
         val daysInMonth = DaysInMonth[newMonth]
         dayPicker.maxValue = daysInMonth
-        if(day > daysInMonth) day = daysInMonth
+        if(getDay() > daysInMonth) setDay(daysInMonth)
     }
 
     private fun configureButtons() {
@@ -84,13 +87,13 @@ abstract class PersonModificationFragment : Fragment() {
 
     protected open fun getPerson() = Person( getName(), getBirthday(), getPhone())
 
-    private var day: Int
-    get() = dayPicker.value
-    set(value) { dayPicker.value = value}
+    private fun getDay() = dayPicker.value
+
+    private fun setDay(day: Int) { dayPicker.value = day }
 
     private fun getMonth() = monthPicker.value
 
-    private fun getBirthday() = Birthday( day, getMonth())
+    private fun getBirthday() = Birthday( getDay(), getMonth())
 
     private fun getName() = nameInput.text.toString().trim()
 

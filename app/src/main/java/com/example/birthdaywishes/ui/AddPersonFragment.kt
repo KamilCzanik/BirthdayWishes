@@ -17,17 +17,12 @@ class AddPersonFragment : PersonModificationFragment() {
 
     @Inject override lateinit var viewModel: ViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        injectDependencies()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setTitle(R.string.add_person)
     }
 
-    private fun injectDependencies() {
+    override fun injectDependencies() {
         DaggerAddPersonComponent.builder()
             .addPersonModule(AddPersonModule(application()))
             .daoModule(DaoModule(application()))

@@ -15,6 +15,13 @@ class EditPersonViewModel(application: Application) : PersonModificationViewMode
     override lateinit var personToEdit: Person
 
     override fun saveToRepository(person: Person) {
+        setIdToUpdate(person)
+        update(person)
+    }
+
+    private fun setIdToUpdate(person: Person) { person.id = personToEdit.id }
+
+    private fun update(person: Person) {
         personRepository.update(person)
         scheduler.scheduleBirthdayAlarm(person)
     }

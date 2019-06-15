@@ -21,7 +21,6 @@ class EditPersonFragment : PersonModificationFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        injectDependencies()
         setPerson()
     }
 
@@ -40,7 +39,7 @@ class EditPersonFragment : PersonModificationFragment() {
         personBinding.executePendingBindings()
     }
 
-    private fun injectDependencies() {
+    override fun injectDependencies() {
         DaggerEditPersonComponent.builder()
             .daoModule(DaoModule(application()))
             .editPersonModule(EditPersonModule(application()))
@@ -48,8 +47,6 @@ class EditPersonFragment : PersonModificationFragment() {
             .build()
             .inject(this)
     }
-
-    override fun getPerson() = super.getPerson().apply { id = viewModel.personToEdit.id }
 
     interface ViewModel : PersonModificationFragment.ViewModel {
         var personToEdit : Person
