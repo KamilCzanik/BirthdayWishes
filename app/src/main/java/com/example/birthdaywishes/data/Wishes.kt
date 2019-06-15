@@ -11,5 +11,3 @@ open class Wishes(val content: String) {
         return content.contentEquals((other as Wishes).content)
     }
 }
-
-class EmptyWishes : Wishes("")
