@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.NumberPicker
 import androidx.fragment.app.Fragment
 import com.example.birthdaywishes.data.Birthday
-import com.example.birthdaywishes.data.DaysInMonth
+import com.example.birthdaywishes.data.Months
 import com.example.birthdaywishes.data.Person
 import com.example.birthdaywishes.databinding.FragmentEditPersonBinding
 import com.example.birthdaywishes.finishFragment
@@ -61,16 +61,16 @@ abstract class PersonModificationFragment : Fragment() {
     private fun setMinMaxPickersValues() {
         monthPicker.minValue = 1
         monthPicker.maxValue = 12
-        dayPicker.minValue = DaysInMonth.MIN_DAYS
-        dayPicker.maxValue = DaysInMonth[1]
+        dayPicker.minValue = Months.MIN_DAYS
+        dayPicker.maxValue = Months[1].daysCount
     }
 
     private fun setDaysValueController() {
         monthPicker.setOnValueChangedListener(getDaysValueController())
     }
 
-    private fun getDaysValueController() = NumberPicker.OnValueChangeListener { _, _, newMonth ->
-        val daysInMonth = DaysInMonth[newMonth]
+    private fun getDaysValueController() = NumberPicker.OnValueChangeListener { _, _, monthIndex ->
+        val daysInMonth = Months[monthIndex].daysCount
         dayPicker.maxValue = daysInMonth
         if(getDay() > daysInMonth) setDay(daysInMonth)
     }

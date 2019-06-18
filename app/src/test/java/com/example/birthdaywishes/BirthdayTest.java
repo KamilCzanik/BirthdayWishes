@@ -1,7 +1,7 @@
 package com.example.birthdaywishes;
 
 import com.example.birthdaywishes.data.Birthday;
-import com.example.birthdaywishes.data.DaysInMonth;
+import com.example.birthdaywishes.data.Months;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -17,12 +17,12 @@ public class BirthdayTest {
     @Test
     public void givenValidDayWhenIsDateValidThenReturnTrue() {
         for(int i = 1; i<=12; i++)
-            assertTrue(Birthday.Companion.isDateValid(DaysInMonth.Companion.get(i),i));
+            assertTrue(Birthday.Companion.isDateValid(Months.Companion.get(i).getDaysCount(),i));
     }
 
     @Test
     public void givenDayGreaterThatDayCountOfTheMonthWhenIsDateValidThenReturnFalse() {
         for(int i = 1; i<=12; i++)
-            assertFalse(Birthday.Companion.isDateValid(DaysInMonth.Companion.get(i)+1 ,i));
+            assertFalse(Birthday.Companion.isDateValid(Months.Companion.get(i).getDaysCount()+1 ,i));
     }
 }
