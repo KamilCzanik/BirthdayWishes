@@ -88,10 +88,12 @@ class PersonFragment : Fragment() {
         wishesAdapter.isAnyItemSelected.observe(this, getSelectionObserver() )
     }
 
-    private fun getSelectionObserver() = Observer<Boolean> { isSelected ->
-        shareButton.isEnabled = isSelected
-        sendButton.isEnabled = isSelected && viewModel.currentPerson.phoneNumber.isNotEmpty()
+    private fun getSelectionObserver() = Observer<Boolean> { isItemSelected ->
+        shareButton.isEnabled = isItemSelected
+        sendButton.isEnabled = isItemSelected && phoneNumberIsNotEmpty()
     }
+
+    private fun phoneNumberIsNotEmpty() = viewModel.currentPerson.phoneNumber.isNotEmpty()
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.person_fragment_menu,menu)
