@@ -79,7 +79,7 @@ class WishesFragment : RecyclerViewFragment<Wishes>() {
     //endregion
 
     //region wishesInput management
-    private fun isInputVisible() = cardView.visibility == View.GONE
+    private fun isInputVisible() = cardView.visibility == View.VISIBLE
 
     private fun hideWishesInput() {
         cardView.slideDownAndDisappear()
