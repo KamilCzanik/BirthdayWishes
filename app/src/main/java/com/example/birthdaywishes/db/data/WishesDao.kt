@@ -11,6 +11,6 @@ interface WishesDao {
     @Delete fun delete(wishes: Wishes)
     @Update fun update(wishes: Wishes)
 
-    @Query("SELECT * FROM wishes_table")
+    @Query("SELECT * FROM wishes_table ORDER BY id DESC")
     fun getAllWishes() : LiveData<List<Wishes>>
 }
