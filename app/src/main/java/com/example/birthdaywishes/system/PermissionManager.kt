@@ -1,4 +1,4 @@
-package com.example.birthdaywishes
+package com.example.birthdaywishes.system
 
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat

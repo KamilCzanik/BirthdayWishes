@@ -5,11 +5,11 @@ import android.app.Application
 import android.telephony.SmsManager
 import androidx.core.app.ShareCompat
 import androidx.lifecycle.AndroidViewModel
-import com.example.birthdaywishes.PermissionManager
 import com.example.birthdaywishes.R
 import com.example.birthdaywishes.data.Person
 import com.example.birthdaywishes.data.Wishes
-import com.example.birthdaywishes.db.WishesRepository
+import com.example.birthdaywishes.repository.WishesRepository
+import com.example.birthdaywishes.system.PermissionManager
 import com.example.birthdaywishes.ui.PersonFragment
 import javax.inject.Inject
 

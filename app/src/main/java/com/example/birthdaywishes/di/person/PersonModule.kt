@@ -3,8 +3,8 @@ package com.example.birthdaywishes.di.person
 import android.telephony.SmsManager
 import androidx.core.app.ShareCompat
 import androidx.lifecycle.ViewModelProvider
-import com.example.birthdaywishes.PermissionManager
-import com.example.birthdaywishes.db.WishesRepository
+import com.example.birthdaywishes.repository.WishesRepository
+import com.example.birthdaywishes.system.PermissionManager
 import com.example.birthdaywishes.ui.MainActivity
 import com.example.birthdaywishes.ui.PersonFragment
 import com.example.birthdaywishes.viewmodel.PersonViewModel
@@ -15,7 +15,7 @@ import dagger.Provides
 class PersonModule(private val activity: MainActivity) {
 
     @Provides
-    fun providesViewModel(repository: WishesRepository,permissionManager: PermissionManager) : PersonFragment.ViewModel {
+    fun providesViewModel(repository: WishesRepository, permissionManager: PermissionManager) : PersonFragment.ViewModel {
         val viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(activity.application).create(PersonViewModel::class.java)
         viewModel.wishesRepository = repository
         viewModel.intentBuilder = ShareCompat.IntentBuilder.from(activity)

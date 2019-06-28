@@ -1,4 +1,4 @@
-package com.example.birthdaywishes.db.data
+package com.example.birthdaywishes.data.db
 
 import android.content.Context
 import androidx.room.Database
@@ -7,6 +7,9 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.birthdaywishes.data.Person
 import com.example.birthdaywishes.data.Wishes
+import com.example.birthdaywishes.data.db.converters.BirthdayTypeConverter
+import com.example.birthdaywishes.data.db.dao.PersonDao
+import com.example.birthdaywishes.data.db.dao.WishesDao
 
 @Database(entities = [Person::class, Wishes::class], version = 1, exportSchema = false)
 @TypeConverters(BirthdayTypeConverter::class)

@@ -2,7 +2,7 @@ package com.example.birthdaywishes.di.personModification.addPerson
 
 import android.app.Application
 import androidx.lifecycle.ViewModelProvider
-import com.example.birthdaywishes.db.PersonRepository
+import com.example.birthdaywishes.repository.PersonRepository
 import com.example.birthdaywishes.system.BirthdayAlarmScheduler
 import com.example.birthdaywishes.ui.AddPersonFragment
 import com.example.birthdaywishes.viewmodel.personModification.AddPersonViewModel
@@ -13,7 +13,7 @@ import dagger.Provides
 class AddPersonModule(private val application: Application){
 
     @Provides
-    fun providesViewModel(repository: PersonRepository,scheduler: BirthdayAlarmScheduler) : AddPersonFragment.ViewModel {
+    fun providesViewModel(repository: PersonRepository, scheduler: BirthdayAlarmScheduler) : AddPersonFragment.ViewModel {
         val viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(AddPersonViewModel::class.java)
         viewModel.personRepository = repository
         viewModel.scheduler = scheduler

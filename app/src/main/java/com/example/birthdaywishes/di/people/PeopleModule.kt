@@ -2,7 +2,7 @@ package com.example.birthdaywishes.di.people
 
 import android.app.Application
 import androidx.lifecycle.ViewModelProvider
-import com.example.birthdaywishes.db.PeopleRepository
+import com.example.birthdaywishes.repository.PeopleRepository
 import com.example.birthdaywishes.ui.PeopleFragment
 import com.example.birthdaywishes.viewmodel.PeopleViewModel
 import dagger.Module

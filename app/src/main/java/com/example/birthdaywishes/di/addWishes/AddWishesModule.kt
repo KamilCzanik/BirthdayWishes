@@ -2,7 +2,7 @@ package com.example.birthdaywishes.di.addWishes
 
 import android.app.Application
 import androidx.lifecycle.ViewModelProvider
-import com.example.birthdaywishes.db.WishesRepository
+import com.example.birthdaywishes.repository.WishesRepository
 import com.example.birthdaywishes.ui.AddWishesFragment
 import com.example.birthdaywishes.viewmodel.AddWishesViewModel
 import dagger.Module

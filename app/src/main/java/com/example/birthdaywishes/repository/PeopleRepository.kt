@@ -1,16 +1,18 @@
-package com.example.birthdaywishes.db
+package com.example.birthdaywishes.repository
 
 import android.os.AsyncTask
 import androidx.lifecycle.LiveData
 import com.example.birthdaywishes.data.Person
-import com.example.birthdaywishes.db.data.PersonDao
+import com.example.birthdaywishes.data.db.dao.PersonDao
 import javax.inject.Inject
 
 class PeopleRepository @Inject constructor(private val personDao: PersonDao) {
 
     val people: LiveData<List<Person>> = personDao.getAllPeople()
 
-    fun delete(person: Person): Any = DeletePersonAsyncTask(personDao).execute(person)
+    fun delete(person: Person): Any = DeletePersonAsyncTask(
+        personDao
+    ).execute(person)
 
     companion object {
         private class DeletePersonAsyncTask(val personDao: PersonDao) : AsyncTask<Person, Any, Any>() {
