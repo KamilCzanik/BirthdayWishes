@@ -56,7 +56,6 @@ class WishesFragment : RecyclerViewFragment<Wishes>() {
     private fun hideWishesInput() = cardView.slideDownAndDisappear()
 
     private fun showWishesInput() = cardView.appearAndSlideUp()
-
     //endregion
 
     //region recycler actions impl
@@ -64,7 +63,6 @@ class WishesFragment : RecyclerViewFragment<Wishes>() {
         showRemovingDialog(wishesAdapter.getWishesAt(viewHolder.adapterPosition)) {wishesAdapter.notifyDataSetChanged()}
 
     override fun deleteItem(item: Wishes) = viewModel.delete(item)
-
     //endregion
 
     interface ViewModel : RecyclerViewFragment.ViewModel<Wishes>

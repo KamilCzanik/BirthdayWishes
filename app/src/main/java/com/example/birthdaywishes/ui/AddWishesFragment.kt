@@ -31,8 +31,8 @@ class AddWishesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         injectDependencies()
-        setOnClickListeners()
         validateDataInRealTime()
+        setOnClickListeners()
     }
 
     private fun injectDependencies() {
@@ -43,16 +43,15 @@ class AddWishesFragment : Fragment() {
             .inject(this)
     }
 
-    private fun validateDataInRealTime() {
-        wishesInput.addTextChangedListener(object : TextWatcher {
+    private fun validateDataInRealTime() = wishesInput.addTextChangedListener(getTextChangeListener())
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                submitButton.isEnabled = getInsertedWishesContent().isNotEmpty()
-            }
+    private fun getTextChangeListener() = object : TextWatcher {
 
-            override fun afterTextChanged(s: Editable?) {}
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-        })
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            submitButton.isEnabled = getInsertedWishesContent().isNotEmpty()
+        }
+        override fun afterTextChanged(s: Editable?) {}
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
     }
 
     private fun setOnClickListeners() = submitButton.setOnClickListener { addWishes() }
