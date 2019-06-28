@@ -32,7 +32,7 @@ open class WishesAdapter @Inject constructor() : ListAdapter<Wishes, WishesAdapt
 
             override fun areItemsTheSame(oldItem: Wishes, newItem: Wishes) = oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: Wishes, newItem: Wishes) = oldItem.content == newItem.content
+            override fun areContentsTheSame(oldItem: Wishes, newItem: Wishes) = oldItem== newItem
         }
     }
 }
