@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <EditText
+            android:id="@+id/fragmentAddWishesInput_editText"
+            android:layout_width="0dp" android:layout_height="250dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="start"
+            android:hint="@string/add_wishes_hint"
+            android:background="@android:color/transparent"
+            android:inputType="textPersonName"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/fragmentAddWishesSubmit_button"/>
+    <Button
+            android:enabled="false"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/fragmentAddWishesSubmit_button" android:text="@string/submit"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

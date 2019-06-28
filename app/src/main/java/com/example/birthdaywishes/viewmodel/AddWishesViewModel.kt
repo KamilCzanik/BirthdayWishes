@@ -4,13 +4,14 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.example.birthdaywishes.data.Wishes
 import com.example.birthdaywishes.db.WishesRepository
-import com.example.birthdaywishes.ui.WishesFragment
+import com.example.birthdaywishes.ui.AddWishesFragment
 import javax.inject.Inject
 
-class WishesViewModel(application: Application) : AndroidViewModel(application),WishesFragment.ViewModel {
+class AddWishesViewModel(application: Application) : AndroidViewModel(application),AddWishesFragment.ViewModel {
 
     @Inject lateinit var repository: WishesRepository
-    override val allItems by lazy { repository.wishes }
 
-    override fun delete(item: Wishes) { repository.delete(item) }
+    override fun add(wishes: Wishes) {
+        repository.add(wishes)
+    }
 }

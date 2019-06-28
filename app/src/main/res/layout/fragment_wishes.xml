@@ -27,46 +27,28 @@
     <androidx.cardview.widget.CardView
             android:id="@+id/wishesFragmentInputField_cardView"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="300dp"
             app:cardCornerRadius="@dimen/cardview_custom_radius"
             app:cardElevation="@dimen/cardview_custom_elevation"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" android:visibility="gone">
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="250dp">
-            <EditText
-                    android:id="@+id/wishesFragmentInput_editText"
-                    android:layout_width="0dp" android:layout_height="0dp"
-                    app:layout_constraintStart_toStartOf="parent"
+        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                           android:layout_height="match_parent">
+
+            <ImageButton
+                    android:layout_width="24dp"
+                    android:layout_height="24dp" android:id="@+id/wishesFragmentCancel_button"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:gravity="start"
-                    android:hint="@string/add_wishes_hint"
-                    android:background="@android:color/transparent"
-                    android:inputType="textPersonName"
-                    android:padding="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_margin="4dp"
-                    app:layout_constraintBottom_toTopOf="@+id/fragmentWishesCancel_button"/>
-            <Button
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:id="@+id/fragmentWishesCancel_button"
-                    app:layout_constraintEnd_toStartOf="@+id/fragmentWishesSubmit_button"
-                    android:layout_marginEnd="8dp"
-                    app:layout_constraintTop_toTopOf="@+id/fragmentWishesSubmit_button"
-                    app:layout_constraintBottom_toBottomOf="@+id/fragmentWishesSubmit_button"
-                    android:text="@string/cancel"/>
-            <Button
-                    android:enabled="false"
-                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-                    android:id="@+id/fragmentWishesSubmit_button" android:text="@string/submit"/>
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp" android:src="@drawable/ic_close_gray"
+                    android:background="@android:color/transparent"/>
+            <fragment android:layout_width="0dp" android:layout_height="0dp"
+                      android:name="com.example.birthdaywishes.ui.AddWishesFragment"
+                      android:id="@+id/addWishesFragment" app:layout_constraintEnd_toEndOf="parent"
+                      app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/wishesFragmentCancel_button"
+                      android:layout_marginTop="8dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
